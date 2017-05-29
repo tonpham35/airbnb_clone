@@ -35,6 +35,8 @@ gem 'jquery-rails'
 
 gem 'clearance'
 gem 'figaro'
+gem 'omniauth'
+gem 'omniauth-facebook'
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
