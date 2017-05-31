@@ -1,17 +1,19 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  user: 
-  listing: 
-  start_date: 2017-05-28
-  end_date: 2017-05-28
-  price: 1
+  user: one
+  listing: one
+  total_price: 1
   currency: MyString
+  start_date: 2017-05-30
+  end_date: 2017-05-30
+  message: MyString
 
 two:
-  user: 
-  listing: 
-  start_date: 2017-05-28
-  end_date: 2017-05-28
-  price: 1
+  user: two
+  listing: two
+  total_price: 1
   currency: MyString
+  start_date: 2017-05-30
+  end_date: 2017-05-30
+  message: MyString

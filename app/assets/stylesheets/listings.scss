@@ -1,0 +1,25 @@
+// Place all the styles related to the listings controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+.carousel-inner > .item > img {
+	margin: auto auto;
+}
+
+.item{
+    position: relative;
+    height:100%;
+    
+}
+
+.carousel-img {
+    max-height: 400px;
+    position: absolute;   
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.listing-preview {
+	max-height: 90px;
+	max-width: auto;
+}

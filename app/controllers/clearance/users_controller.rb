@@ -16,18 +16,17 @@ class Clearance::UsersController < Clearance::BaseController
 
   def create
     @user = user_from_params
-    p @user
-    if @user.save
-      sign_in @user
-      redirect_back_or url_after_create
-    else
-      puts 'hello'
-      respond_to do |format|
-        # format.html {redirect_to user_new}
-        format.js
+      if @user.save
+        sign_in @user
+        redirect_back_or url_after_create
+      else
+        puts 'hello'
+        respond_to do |format|
+          # format.html {redirect_to user_new}
+          format.js
+        end
+        # render template: "users/new"
       end
-      # render template: "users/new"
-    end
   end
 
   private
@@ -51,17 +50,19 @@ class Clearance::UsersController < Clearance::BaseController
   end
 
   def user_from_params
-    email = user_params.delete(:email)
-    password = user_params.delete(:password)
-    first_name = user_params.delete(:first_name)
-    last_name = user_params.delete(:last_name)
+      email = user_params.delete(:email)
+      password = user_params.delete(:password)
+      first_name = user_params.delete(:first_name)
+      last_name = user_params.delete(:last_name)
+      profilepic = user_params.delete(:profilepic)
 
-    Clearance.configuration.user_model.new(user_params).tap do |user|
-      user.email = email
-      user.password = password
-      user.first_name = first_name
-      user.last_name = last_name
-    end
+      Clearance.configuration.user_model.new(user_params).tap do |user|
+        user.email = email
+        user.password = password
+        user.first_name = first_name
+        user.last_name = last_name
+        user.profilepic = profilepic
+      end
   end
 
   def user_params

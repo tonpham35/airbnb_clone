@@ -13,6 +13,11 @@ one:
   price_per_day: 1
   currency: MyString
   content: MyString
+  smoker: false
+  pets: false
+  instant_book: false
+  property_type: MyString
+  name: MyString
 
 two:
   user: 
@@ -27,3 +32,8 @@ two:
   price_per_day: 1
   currency: MyString
   content: MyString
+  smoker: false
+  pets: false
+  instant_book: false
+  property_type: MyString
+  name: MyString
