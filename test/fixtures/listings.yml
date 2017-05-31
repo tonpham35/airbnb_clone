@@ -1,0 +1,39 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  user: 
+  address1: MyString
+  address2: MyString
+  postalcode: 1
+  state: MyString
+  country: MyString
+  no_bed: 1
+  no_room: 1
+  max_guest: 1
+  price_per_day: 1
+  currency: MyString
+  content: MyString
+  smoker: false
+  pets: false
+  instant_book: false
+  property_type: MyString
+  name: MyString
+
+two:
+  user: 
+  address1: MyString
+  address2: MyString
+  postalcode: 1
+  state: MyString
+  country: MyString
+  no_bed: 1
+  no_room: 1
+  max_guest: 1
+  price_per_day: 1
+  currency: MyString
+  content: MyString
+  smoker: false
+  pets: false
+  instant_book: false
+  property_type: MyString
+  name: MyString

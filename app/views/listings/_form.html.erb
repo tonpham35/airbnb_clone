@@ -1,0 +1,85 @@
+<%= form_with(model: listing, local: true) do |form| %>
+<div class="text-field">
+  <%= form.label :address1 %>
+  <%= form.text_field :address1, type: 'address1' %>
+</div>
+
+<div class="text-field">
+  <%= form.label :address2 %>
+  <%= form.text_field :address2, type: 'address2' %>
+</div>
+
+<div class="text-field">
+  <%= form.label :postalcode %>
+  <%= form.text_field :postalcode, type: 'postalcode' %>
+</div>
+
+<div class="text-field">
+  <%= form.label :state %>
+  <%= form.text_field :state, type: 'state' %>
+</div>
+
+<div class="text-field">
+  <%= form.label :country %>
+  <%= form.text_field :country, type: 'country' %>
+</div>
+
+<div>
+
+    <%= form.label :Number_of_Beds %>
+    <%= form.select :no_bed, [ '0','1','2','3','4','5','6','7','8','9','10','11','12','13','14','15','16','17','18','19','20' ], :prompt => 'Select One' %>
+</div>
+
+<div>
+
+    <%= form.label :Number_of_Rooms %>
+    <%= form.select :no_room, [ '0','1','2','3','4','5','6','7','8','9','10' ], :prompt => 'Select One' %>
+</div>
+
+<div>
+
+    <%= form.label :Maximum_number_of_guest %>
+    <%= form.select :max_guest, [ '0','1','2','3','4','5','6','7','8','9','10','11','12','13','14','15','16','17','18','19','20' ], :prompt => 'Select One' %>
+</div>
+
+<div class="text-field">
+  <%= form.label :Price_per_day %>
+  <%= form.text_field :price_per_day, type: 'price_per_day' %>
+</div>
+
+<div>
+
+    <%= form.label :currency %>
+    <%= form.select :currency, [ 'USD','MYR','VND','GBP','JPY','RMB','AUD','CAD','EUR'], :prompt => 'Select One' %>
+</div>
+
+<div class="text-field">
+  <%= form.label :Description %>
+  <%= form.text_field :content, type: 'content' %>
+</div>
+
+<div class="field">
+    <%= form.label "Smoking Allowed" %>
+    <%= form.check_box :smoker %>
+</div>
+
+<div class="field">
+    <%= form.label "Pets Allowed" %>
+    <%= form.check_box :pets %>
+</div>
+
+<div class="field">
+    <%= form.label "Instant Book" %>
+    <%= form.check_box :instant_book %>
+</div>
+
+<div class="field">
+    <%= form.label "Photos" %>
+    <%= form.file_field :photos, multiple: true %>
+</div>
+
+  <div class="submit-field">
+    <%= form.submit %>
+  </div>
+<% end %>
+

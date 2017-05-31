@@ -34,6 +34,13 @@ gem 'jquery-rails'
 # gem 'bcrypt', '~> 3.1.7'
 
 gem 'clearance'
+gem 'figaro'
+gem 'omniauth'
+gem 'omniauth-facebook'
+gem 'faker'
+gem 'kaminari'
+gem 'carrierwave'
+gem 'mini_magick'
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
