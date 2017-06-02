@@ -1,57 +1,69 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <%= javascript_include_tag 'application' %>
-  <%= csrf_meta_tag %>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-  <%= stylesheet_link_tag    "application", :media => "all" %>
+<title>Connections Peer Listings</title>
+	<%= csrf_meta_tag %>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+	<!-- Sidebar js -->
+	<script type="text/javascript" language="javascript" src="http://propeller.in/components/sidebar/js/sidebar.js"></script>
+	<!-- Propeller Dropdown js -->
+	<script type="text/javascript" language="javascript" src="http://propeller.in/components/dropdown/js/dropdown.js"></script>
+	<!-- Propeller ripple effect js -->
+	<script type="text/javascript" language="javascript" src="http://propeller.in/components/button/js/ripple-effect.js"></script>
+  	<%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  	<!-- Propeller modal js -->
+	<script type="text/javascript" src="http://propeller.in/components/modal/js/modal.js"></script>
+	<!-- Propeller checkbox js -->
+	<script type="text/javascript" src="http://propeller.in/components/checkbox/js/checkbox.js"></script>
+	<!-- Propeller radio js -->
+	<script type="text/javascript" src="http://propeller.in/components/radio/js/radio.js"></script>
+	<!-- Propeller textfield js -->
+	<script type="text/javascript" src="http://propeller.in/components/textfield/js/textfield.js"></script>
 
 </head>
 </head>
-<body>
-  <div id="header">
-    <% if signed_in? -%>
-      <%= button_to t(".sign_out"), sign_out_path, method: :delete %>
-      <%= current_user.email %>
-    <% else -%>
-      <%= link_to t(".sign_in"), sign_in_path %>
-    <% end -%>
-  </div>
+<body style="background-color: lightgrey;">
+<%= render partial: "layouts/navbar" %>
 
-  <div style='background-color: black; height: 100px; width: 100px'>
-  <%= link_to root_path do %>
-    <% if signed_in? -%>
-      <% if current_user.profilepic.thumb.url != nil %>
-        <%=image_tag current_user.profilepic.thumb.url, class:'profile_pic'%>
-      <% else -%>
-        <img class='profile_pic' src="/blank_profile_pic_Fotor.png">
-      <% end -%>
-    <% else -%>
-        <img class='profile_pic' src="/blank_profile_pic_Fotor.png">
-    <% end -%>
-  <% end %>
-  </div>
+<!-- Dialog with Form Elements -->
+<!-- <div tabindex="-1" class="modal fade" id="sign-in-form-dialog" style="display: none;" aria-hidden="true">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header pmd-modal-bordered">
+				<button aria-hidden="true" data-dismiss="modal" class="close" type="button">CLOSE</button>
+				<h2 class="pmd-card-title-text" style="font-size: 20px; font-weight: bold;">Sign In</h2>
+			</div>
+			<div class="modal-body">
+				<form class="form-horizontal">
+					<%#= form_for @user, remote: true do |form| %>
+					<div class="form-group pmd-textfield pmd-textfield-floating-label">
+						<label for="first-name">Email Address</label>
+						<%# form.label :email do %><input type="text" class="mat-input form-control" value=""><%# end %>
+					</div>
+					<div class="form-group pmd-textfield pmd-textfield-floating-label">
+						<label for="first-name">Password</label>
+						<%# form.label :password do %><input type="password" class="mat-input form-control" value=""><%# end %>
+					</div>
+					<label class="checkbox-inline pmd-checkbox pmd-checkbox-ripple-effect">
+						<input type="checkbox" value="">
+						<span class="pmd-checkbox"> Accept Terms and conditions</span> </label>
+				</form>
+			</div>
+			<div class="pmd-modal-action">
+				<%# form.submit do %><button data-dismiss="modal"  class="btn pmd-ripple-effect btn-primary" type="button">Sign In 
+				</button><%# end %>
+				<%# end %>
+				<%# link_to "/auth/facebook" do %><button data-dismiss="modal"  class="btn pmd-ripple-effect btn-default" type="button">Facebook Login</button><%# end %>
+			</div>
+		</div>
+	</div>
+</div> -->
 
-  <div id="flash">
-    <% flash.each do |key, value| -%>
-      <div id="flash_<%= key %>"><%=h value %></div>
-    <% end %>
-  </div>
 
-<% if current_user != nil %>
-  <% if current_user.superadmin? %>
-    <h3>Welcome Super Admin</h3>
-  <% elsif current_user.moderator? %>
-    <h3>Welcome, Moderator</h3>
-  <% else %>
-    <h3>Welcome Customer</h3>
-  <% end %>
-<% end %>
-
-  <%= yield %>
+<%= yield %>
 </body>
 </html>

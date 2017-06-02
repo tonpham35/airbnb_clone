@@ -14,11 +14,13 @@ Rails.application.routes.draw do
       only: [:create, :edit, :update]
   end
 
-  resources :users, only: [:edit, :update]
+  resources :users, only: [:edit, :update, :index, :show]
 
   resources :listings
 
-  root 'users#index'
+  get 'users/' => 'users#index', :as => :users_index
+
+  root 'users#home'
 
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html

@@ -14,4 +14,46 @@
 //= require turbolinks
 //= require jquery
 //= require bootstrap-sprockets
+//= require moment
+//= require bootstrap-datetimepicker
 //= require_tree .
+
+// $(window).scroll(function() {
+
+//     if ($(this).scrollTop()>0)
+//      {
+//         $('.menu').css('background', 'dodgerblue');
+//      }
+//     else
+//      {
+//       	$('.menu').css('background', 'none');
+//      }
+//  });
+
+  $(window).scroll(function() {
+    if($(this).scrollTop() > 40)  /*height in pixels when the navbar becomes non opaque*/ 
+    {
+        $('.container-fluid').addClass('colored');
+    } else {
+        $('.container-fluid').removeClass('colored');
+    }
+});
+
+$(document).ready(function(){
+    $(function() {              
+        $('#datetimepicker1').datetimepicker({
+        	format: 'DD/MM/YYYY'
+        });
+    });
+    $(function() {              
+        $('#datetimepicker').datetimepicker({
+        	format: 'DD/MM/YYYY'
+        });
+    }); 
+        // start date picke on chagne event [select minimun date for end date datepicker]
+    $("#datetimepicker1").on("dp.change", function (e) {
+        $('#datetimepicker').data("DateTimePicker").minDate(e.date);
+    });
+    // Start date picke on chagne event [select maxmimum date for start date datepicker]
+});
+   

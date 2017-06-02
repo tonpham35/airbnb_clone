@@ -1,0 +1,100 @@
+<%= stylesheet_link_tag    "application", :media => "all" %>
+<!-- <nav class="menu" style="z-index: 10">
+  <ul class="active">
+  	<li><%#= link_to root_path do %><img id='nav-bar-logo' src="/assets/connections-dark.png"><%# end %></li>
+    <li id="nav-options"><%#= link_to "Listings", listings_path %></li>
+    <li id="nav-options">
+	<%# if signed_in? -%>
+	  	<li id="nav-options">
+			<%#= link_to "User Profile", users_index_path %>
+		</li>
+	<%# else -%>
+	    <li id="nav-options">
+	    <%#= link_to "Sign In", sign_in_path %>
+	    </li>
+	<%# end -%>
+
+    <li data-toggle="modal" data-target="#myModal">LOGIN</li>
+    <li id="nav-options">
+    	<%# if signed_in? -%>
+			<%#= link_to "Sign Off", sign_out_path, method: :delete %>
+	    <%# else -%>
+	      <%#= link_to "Sign Up", sign_up_path %>
+	    <%# end -%>
+    </li>
+    <li id='profilepic-block' style='text-align: center' >
+	  <div id='profile-pic-container'>
+		<%#= link_to root_path do %>
+		    <%# if signed_in? -%>
+		    <div style="margin: 0px; position: relative; top: 20px;">
+		    	<%# if current_user.profilepic.thumb.url != nil %>
+		        	<%#=image_tag current_user.profilepic.thumb.url, class:'profile_pic'%>
+		      	<%# else -%>
+		        	<img class='profile_pic' src="/blank_profile_pic_Fotor.png">
+		      	<%# end -%>
+		    <%# else -%>
+		        <img class='profile_pic' src="/blank_profile_pic_Fotor.png">
+		    <%# end -%>
+		    </div>
+		<%# end %>
+		<%# if signed_in? -%>
+			<div style="margin: 0px;">
+			<%# if current_user.superadmin? %>
+				<span style="padding-top: 5px;">Super Admin</span>
+			<%# elsif current_user.moderator? %>
+				<span style="padding-top: 5px;">Moderator</span>
+			<%# else %>
+				<span style="margin-top: 5px;">Customer</span>
+			<%# end %>
+			</div>
+		<%# end %>
+	  </div>
+  	</li>
+  </ul>
+</nav> -->
+
+<nav class="navbar navbar-fixed-top pmd-navbar pmd-z-depth">
+	<div class="container-fluid">
+		<!-- Brand and toggle get grouped for better mobile display -->
+		<div class="navbar-header">
+		  <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+			<span class="sr-only">Toggle navigation</span>
+			<span class="icon-bar"></span>
+			<span class="icon-bar"></span>
+			<span class="icon-bar"></span>
+		  </button>
+		  <span class="navbar-brand navbar-brand-custome"><%= link_to root_path do %><img id='nav-bar-logo' src="/assets/connections-dark.png"><% end %></span>
+		</div>
+		<!-- Collect the nav links, forms, and other content for toggling -->
+		<div id="bs-example-navbar-collapse-1" class="collapse navbar-collapse">
+		  <ul class="nav navbar-nav">
+		  		<% if signed_in? -%>
+	  				<li id="nav-options"><%= link_to "User Profile", users_index_path %></li>
+				<% else -%>
+	   				 <li id="nav-options"><%= link_to "Sign In", sign_in_path %></li>
+				<% end -%>
+    			<li id="nav-options">
+    				<% if signed_in? -%>
+						<%= link_to "Sign Off", sign_out_path, method: :delete %>
+	    			<% else -%>
+	      				<%= link_to "Sign Up", sign_up_path %>
+	    			<% end -%>
+    			</li>
+			<li><button data-target="#sign-in-form-dialog" data-toggle="modal" class="btn pmd-ripple-effect btn-primary pmd-z-depth" type="button">Form Modal</button></li>
+			<li class="dropdown pmd-dropdown">
+			  <a data-toggle="dropdown" class="pmd-ripple-effect dropdown-toggle" data-sidebar="true" href="javascript:void(0);">Dropdown <span class="caret"></span></a>
+			  <ul class="dropdown-menu">
+				<li><a class="pmd-ripple-effect" href="javascript:void(0);">Action</a></li>
+				<li><a class="pmd-ripple-effect" href="javascript:void(0);">Another action</a></li>
+				<li><a class="pmd-ripple-effect" href="javascript:void(0);">Something else here</a></li>
+				<li class="divider"></li>
+				<li><a class="pmd-ripple-effect" href="javascript:void(0);">Separated link</a></li>
+				<li class="divider"></li>
+				<li><a class="pmd-ripple-effect" href="javascript:void(0);">One more separated link</a></li>
+			  </ul>
+			</li>
+		  </ul>
+		</div><!-- /.navbar-collapse -->
+	</div><!-- /.container-fluid -->
+	<div class="pmd-sidebar-overlay"></div>
+</nav>

@@ -13,13 +13,218 @@
  *= require_tree .
  *= require_self
  */
-// "bootstrap-sprockets" must be imported before "bootstrap" and "bootstrap/variables"
+
 @import "bootstrap-sprockets";
 @import "bootstrap";
+@import 'bootstrap-datetimepicker';
+/* Bootstrap css */
+@import "https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css";
+/* Propeller typography */
+@import "http://propeller.in/components/typography/css/typography.css";
+/* Propeller buttons */
+@import "http://propeller.in/components/button/css/button.css";
+/* Propeller icons */
+@import "http://fonts.googleapis.com/icon?family=Material+Icons";
+@import "http://propeller.in/components/icons/css/google-icons.css";
+/* Propeller input */
+@import "http://propeller.in/components/textfield/css/textfield.css";
+/* Propeller card css */
+@import "http://propeller.in/components/card/css/card.css";
+/* Bootstrap datetimepicker */
+@import "http://propeller.in/components/datetimepicker/css/bootstrap-datetimepicker.css";
+/* Propeller datetimepicker */
+@import "http://propeller.in/components/datetimepicker/css/pmd-datetimepicker.css";
+/* Propeller navbar */
+@import "http://propeller.in/components/navbar/css/navbar.css";
+/* Propeller dropdowns */
+@import "http://propeller.in/components/dropdown/css/dropdown.css";
+/* Propeller list */
+@import "http://propeller.in/components/list/css/list.css";
+/* Propeller modal */
+@import "http://propeller.in/components/modal/css/modal.css";
+/* Propeller radio */
+@import "http://propeller.in/components/radio/css/radio.css";
+/* Propeller textfield */
+@import "http://propeller.in/components/textfield/css/textfield.css";
+/* Propeller checkbox */
+@import "http://propeller.in/components/checkbox/css/checkbox.css";
 
+/*----- Menu -----*/
+
+.container-fluid {
+	background-color: none;
+	-webkit-transition: all 500ms ease;
+	-moz-transition: all 500ms ease;
+	-ms-transition: all 500ms ease;
+	-o-transition: all 500ms ease;
+	transition: all 500ms ease;
+}
+.container-fluid.colored {
+    background: lightskyblue;
+    -webkit-transition: all 500ms ease;
+	-moz-transition: all 500ms ease;
+	-ms-transition: all 500ms ease;
+	-o-transition: all 500ms ease;
+	transition: all 500ms ease;
+  }
+
+.container-fluid:hover {
+    background: lightskyblue;
+    -webkit-transition: all 500ms ease;
+	-moz-transition: all 500ms ease;
+	-ms-transition: all 500ms ease;
+	-o-transition: all 500ms ease;
+	transition: all 500ms ease;
+  }
+
+
+img {
+	max-height: 100%;
+	max-width: 100%;
+}
+#profile-pic-block {
+	align-text: right;
+}
+
+#nav-bar-logo {
+	height: 75px;
+	width: auto;
+}
 .profile_pic {
    	max-width: 100%;
     max-height: 100%;
-	border-radius: 100%;
-	display: container;
+	position: relative;
+  	top: 50%;
+  	transform: translateY(-50%);
+  	z-index: 7;
+  	border-radius: 25%;
+}
+
+#profile-pic-container {
+	height: 75px;
+	width: 75px;
+}
+
+.menu {
+    top: 0px;
+    padding-top: 15px;
+    width:100%;
+    /*background: dodgerblue;*/
+    position: fixed;
+    -webkit-transition: all 500ms ease;
+	-moz-transition: all 500ms ease;
+	-ms-transition: all 500ms ease;
+	-o-transition: all 500ms ease;
+	transition: all 500ms ease;
+  }
+
+.menu.colored {
+    top: 0px;
+    padding-top: 15px;
+    width:100%;
+    background: lightskyblue;
+    position: fixed;
+    -webkit-transition: all 500ms ease;
+	-moz-transition: all 500ms ease;
+	-ms-transition: all 500ms ease;
+	-o-transition: all 500ms ease;
+	transition: all 500ms ease;
+  }
+
+.menu:hover {
+    top: 0px;
+    padding-top: 15px;
+    width:100%;
+    background: lightskyblue;
+    position: fixed;
+    -webkit-transition: all 500ms ease;
+	-moz-transition: all 500ms ease;
+	-ms-transition: all 500ms ease;
+	-o-transition: all 500ms ease;
+	transition: all 500ms ease;
+  }
+
+.menu ul {
+  display:inline-block;
+}
+ 
+.menu li {
+	margin:0px 50px 0px 0px;
+	float:left;
+	list-style:none;
+/*	font-size: small;*/
+	text-transform: uppercase;
+	letter-spacing: 2px;
+}
+ 
+.menu li:last-child {
+	float: right;
+}
+ 
+.menu a {
+	color: grey;
+	transition:color linear 0.15s;
+	text-decoration: none;
+}
+ 
+.menu a:hover {
+	text-decoration: none;
+	color: black;
+	background-color: lightskyblue;
+}
+
+#nav-options {
+	font-size: 22px;
+	color: black;
+	padding-top: 20px;
+}
+
+#backgroud-home {
+	background-image: url(capetown_banner1080.jpg);
+	width: 100%;
+	height: 600px;
+	/*background-size: cover;*/
+}
+
+/*----- Home Page -----*/
+#home-banner {
+	background-image: url(/assets/capetown_banner1440.jpg);
+	width: 100%;
+	height: 800px;
+	background-size: cover;
+}
+
+/*----- Listing Carousel -----*/
+.carousel-inner > .item > img {
+	margin: auto auto;
+	max-height: 100%;
+	max-width: 100%;
+}
+
+.item{
+    position: relative;
+    height:500px;
+    
+}
+
+.carousel-img {
+    max-height: 500px;
+    position: absolute;   
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.listing-preview {
+	max-height: 90px;
+	max-width: auto;
+}
+
+/*----- Card -----*/
+.card-thumb {
+	height: 40px;
+	width: 40px;
+}
+
+#card-pic-small {
+	height: 250px;
 }

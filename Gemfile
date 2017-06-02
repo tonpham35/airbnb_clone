@@ -40,7 +40,12 @@ gem 'omniauth-facebook'
 gem 'faker'
 gem 'kaminari'
 gem 'carrierwave'
+gem 'carrierwave_direct'
+gem 'sidekiq'
 gem 'mini_magick'
+gem 'fog'
+gem 'momentjs-rails'
+gem 'bootstrap3-datetimepicker-rails'
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
