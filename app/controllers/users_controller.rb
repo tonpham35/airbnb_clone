@@ -1,6 +1,11 @@
 class UsersController < ApplicationController
  before_action :require_login
 
+  def home
+    @listings = Listing.all
+    @listings = @listings.sample(16)
+  end  
+
   def index
   	@users = current_user
   end

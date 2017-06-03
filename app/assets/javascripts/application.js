@@ -31,11 +31,11 @@
 //  });
 
   $(window).scroll(function() {
-    if($(this).scrollTop() > 40)  /*height in pixels when the navbar becomes non opaque*/ 
+    if($(this).scrollTop() > 100)  /*height in pixels when the navbar becomes non opaque*/ 
     {
-        $('.container-fluid').addClass('colored');
+        $('.menu').addClass('colored');
     } else {
-        $('.container-fluid').removeClass('colored');
+        $('.menu').removeClass('colored');
     }
 });
 

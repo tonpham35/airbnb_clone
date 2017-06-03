@@ -173,9 +173,8 @@
     </div>
 
   <div class="field">
-    <% arr = ((1..@listing.max_guest).to_a).map!{|i| i.to_s } %>
     <%= form.label :Number_of_Guest %>
-    <%= form.select :num_guest, arr, :prompt => 'Select One' %>
+    <%= form.select :num_guest, (((1..@listing.max_guest).to_a).map!{|i| i.to_s }), :prompt => 'Select One' %>
   </div>
 
 

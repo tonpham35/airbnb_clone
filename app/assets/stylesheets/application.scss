@@ -60,7 +60,7 @@
 	transition: all 500ms ease;
 }
 .container-fluid.colored {
-    background: lightskyblue;
+    background: royalblue;
     -webkit-transition: all 500ms ease;
 	-moz-transition: all 500ms ease;
 	-ms-transition: all 500ms ease;
@@ -69,7 +69,7 @@
   }
 
 .container-fluid:hover {
-    background: lightskyblue;
+    background: royalblue;
     -webkit-transition: all 500ms ease;
 	-moz-transition: all 500ms ease;
 	-ms-transition: all 500ms ease;
@@ -122,8 +122,9 @@ img {
     top: 0px;
     padding-top: 15px;
     width:100%;
-    background: lightskyblue;
+    background: royalblue;
     position: fixed;
+    color: black;
     -webkit-transition: all 500ms ease;
 	-moz-transition: all 500ms ease;
 	-ms-transition: all 500ms ease;
@@ -135,7 +136,7 @@ img {
     top: 0px;
     padding-top: 15px;
     width:100%;
-    background: lightskyblue;
+    background: royalblue;
     position: fixed;
     -webkit-transition: all 500ms ease;
 	-moz-transition: all 500ms ease;
@@ -157,12 +158,8 @@ img {
 	letter-spacing: 2px;
 }
  
-.menu li:last-child {
-	float: right;
-}
- 
 .menu a {
-	color: grey;
+	color: black;
 	transition:color linear 0.15s;
 	text-decoration: none;
 }
@@ -170,27 +167,30 @@ img {
 .menu a:hover {
 	text-decoration: none;
 	color: black;
-	background-color: lightskyblue;
+	background-color: royalblue;
 }
 
 #nav-options {
-	font-size: 22px;
+	font-size: 20px;
 	color: black;
-	padding-top: 20px;
+	padding: 20px 0px;
+	margin-right: 10px;
 }
 
 #backgroud-home {
 	background-image: url(capetown_banner1080.jpg);
 	width: 100%;
-	height: 600px;
+	height: 700px;
 	/*background-size: cover;*/
 }
 
 /*----- Home Page -----*/
 #home-banner {
-	background-image: url(/assets/capetown_banner1440.jpg);
+	background-image: url(/assets/fansipan.jpg);
+	position: absolute;
+	top: -25px;
+	height: 465px;
 	width: 100%;
-	height: 800px;
 	background-size: cover;
 }
 

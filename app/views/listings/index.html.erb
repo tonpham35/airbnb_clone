@@ -8,7 +8,7 @@
   <% @listings.each do |listing| %>
     <!--Media, Title, Description and Action area -->
       <div class="col-lg-3 col-md-6 col-sm-12">
-        <div class="pmd-card pmd-card-default pmd-z-depth" style="height: 500px;">
+        <div class="pmd-card pmd-card-default pmd-z-depth" style="height: 550px;">
           <!-- Card header -->
             <div class="pmd-card-title">
                 <div class="media-left">
@@ -16,7 +16,7 @@
                     <% if listing.user.profilepic.thumb.url != nil %>
                       <%=image_tag listing.user.profilepic.thumb.url, class:"card-thumb"%>
                     <% else %>
-                      <img class='card-thumb' src="/blank_profile_pic_Fotor.png">
+                      <img class='card-thumb' src="/assets/blank_profile_pic_Fotor1.png">
                     <% end %></td>
                   <% end %>
                 </div>
@@ -24,8 +24,7 @@
                     <h3 class="pmd-card-title-text">
                     <%= link_to root_path do %><%= listing.name %><% end %>
                     </h3>
-                    <span class="pmd-card-subtitle-text"><%= listing.address1 %>, <%= listing.state %><br>
-                    Price: <%= listing.price_per_day %><%= listing.currency %>/day</span>
+                    <span class="pmd-card-subtitle-text"><%= listing.address1 %>, <%= listing.state %></span>
                 </div>
             </div>
           
@@ -40,11 +39,12 @@
             
             <!-- Card body -->
             <div class="pmd-card-body">
-                <%= listing.content %>
+                <%= listing.content %> <br>
+                Price: <%= listing.price_per_day %><%= listing.currency %>/day
             </div>
             
             <!-- Card actions -->
-            <div class="pmd-card-actions" style="padding-bottom: 0px; position: relative; float: bottom;">
+            <div class="pmd-card-actions" style="position: absolute; bottom: 30px;">
                 <%= link_to listing do %><button class="btn pmd-btn-flat pmd-ripple-effect btn-primary" type="button">View Listing</button><% end %>
                 <button data-target="#large-dialog<%=listing.id%>" data-toggle="modal" class="btn pmd-btn-flat pmd-ripple-effect btn-primary" type="button">Quick Look</button>
             </div>
