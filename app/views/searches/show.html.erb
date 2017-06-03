@@ -1,0 +1,11 @@
+<p id="notice" style="padding-top: 120px"><%= notice %></p>
+
+
+<% @search.search_listings.each do |search| %>
+  <span><%= search.content %></span><br>
+  <span><%= search.state %></span><br>
+  <span><%= search.user.first_name %></span><br>
+<%end%>
+
+<%= link_to 'Edit Search', edit_search_path(@search) %> |
+<%= link_to 'Back', searches_path %>

@@ -1,0 +1,49 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Searches</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Keyword</th>
+      <th>State</th>
+      <th>Country</th>
+      <th>No bed</th>
+      <th>No room</th>
+      <th>No guest</th>
+      <th>Min price</th>
+      <th>Max price</th>
+      <th>Smoker</th>
+      <th>Pets</th>
+      <th>Instant book</th>
+      <th>Property type</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @searches.each do |search| %>
+      <tr>
+        <td><%= search.keyword %></td>
+        <td><%= search.state %></td>
+        <td><%= search.country %></td>
+        <td><%= search.no_bed %></td>
+        <td><%= search.no_room %></td>
+        <td><%= search.no_guest %></td>
+        <td><%= search.min_price %></td>
+        <td><%= search.max_price %></td>
+        <td><%= search.smoker %></td>
+        <td><%= search.pets %></td>
+        <td><%= search.instant_book %></td>
+        <td><%= search.property_type %></td>
+        <td><%= link_to 'Show', search %></td>
+        <td><%= link_to 'Edit', edit_search_path(search) %></td>
+        <td><%= link_to 'Destroy', search, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Search', new_search_path %>

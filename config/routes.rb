@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
 
+  resources :searches
   resources :reservations
   get "/auth/:provider/callback" => "sessions#create_from_omniauth"
   get "/sign_in" => "clearance/sessions#new", as: "sign_in"
