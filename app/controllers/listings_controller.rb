@@ -5,6 +5,7 @@ class ListingsController < ApplicationController
   # GET /listings.json
   def index
     @listings = Listing.order(:id).page params[:page]
+    @users = current_user
   end
 
   # GET /listings/1
@@ -19,6 +20,7 @@ class ListingsController < ApplicationController
   # GET /listings/new
   def new
     @listing = Listing.new
+    @users = current_user
   end
 
   # GET /listings/1/edit

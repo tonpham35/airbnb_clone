@@ -1,5 +1,6 @@
 class SearchesController < ApplicationController
 	def new
+		@users = current_user
 		@search = Search.new
 		@states = Listing.distinct.pluck(:state)
 		@countries = Listing.distinct.pluck(:country)
@@ -12,6 +13,7 @@ class SearchesController < ApplicationController
 	end
 
 	def show
+		@users = current_user
 		@search = Search.find(params[:id])
 	end
 

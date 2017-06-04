@@ -1,22 +1,78 @@
 <%= stylesheet_link_tag    "application", :media => "all" %>
-<nav class="menu" style="z-index: 10; width: 100%;">
-  <ul class="active row" style='width: 100%;'>
-  	<li class="col-md-1"><%= link_to root_path do %><img id='nav-bar-logo' src="/assets/connections-dark.png"><% end %></li>
-    <li class="col-md-2" id="nav-options"><%= link_to "Listings", listings_path %></li>
-	<% if signed_in? -%>
-	  	<li class="col-md-2" id="nav-options">
-			<%= link_to "Profile", users_index_path %>
-		</li>
-	<% else -%> 
-	    <li class="col-md-2" id="nav-options">
-	    <%= link_to "Sign In", sign_in_path %>
-	    </li>
-	<% end -%>
 
-    <li class="col-md-2" id="nav-options" data-toggle="modal" data-target="#myModal">LOGIN</li>
+<!-- Basic fixed sidebar -->
 
-    <li class="col-md-2" id="nav-options"><% if signed_in? -%><%= link_to "Sign Off", sign_out_path, method: :delete %><% else -%><%= link_to "Sign Up", sign_up_path %>
-	    <% end -%>
-    </li>
-  </ul>
+<!-- Nav menu -->
+<nav class="navbar navbar-inverse pmd-navbar navbar-fixed-top pmd-z-depth">
+  <div class="container-fluid"> 
+      <!-- Sidebar Toggle Button-->
+      <!-- Brand and toggle get grouped for better mobile display -->
+      <div class="navbar-header">
+          <a href="javascript:void(0);" class="btn btn-sm pmd-btn-fab pmd-btn-flat pmd-ripple-effect btn-primary pull-left margin-r8 pmd-sidebar-toggle"><i class="material-icons">menu</i></a>
+
+          <%= link_to root_path do %><img id='nav-bar-logo' src="/assets/connections-dark.png"><% end %>
+
+          <%= link_to root_path do %><span class="navbar-brand" style="color: black;">Connections</span> <% end %> 
+
+      </div>
+      
+      <!-- Navbar Right icon -->    
+      <div class="pmd-navbar-right-icon pull-right"> 
+          <a href="javascript:void(0);" class="btn btn-sm pmd-btn-fab pmd-btn-flat pmd-ripple-effect btn-primary"><i class="material-icons pmd-sm">search</i></a>
+          <a href="javascript:void(0);" class="btn btn-sm pmd-btn-fab pmd-btn-flat pmd-ripple-effect btn-primary topbar-toggle visible-xs-inline-block" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1"><i class="material-icons pmd-sm">more_vert</i></a>
+      </div> 
+  </div>
 </nav>
+    
+<!-- Sidebar -->
+<section id="pmd-main">
+    <!-- Left sidebar -->
+    <aside class="pmd-sidebar sidebar-custom sidebar-default pmd-sidebar-left-fixed pmd-sidebar-left pmd-z-depth sidebar-hide-custom" role="navigation">
+        <ul class="nav pmd-sidebar-nav">
+            <!-- My Account -->
+            <li class="pmd-user-info">
+                <%= link_to users_index_path do %>
+                    <div class="media-left">
+                      <% if signed_in? -%>
+                        <% if @users.profilepic.thumb.url != nil %>
+                          <%=image_tag @users.profilepic.thumb.url, class:"card-thumb"%>
+                        <% else -%> 
+                          <img width="40" height="40" alt="avatar" src="/assets/blank_profile_pic_Fotor1.png">
+                        <% end -%>
+                      <% else -%> 
+                        <img width="40" height="40" alt="avatar" src="/assets/blank_profile_pic_Fotor1.png">
+                      <% end -%>
+                    </div>
+                    <div class="media-body media-middle">
+                      <% if signed_in? -%>
+                        <%= @users.first_name.capitalize %> <%= @users.last_name.capitalize %>
+                        <% else -%> 
+                          Guest
+                        <% end -%>
+                    </div>
+                <% end %>
+            </li>
+
+            <li class="pmd-ripple-effect"><%= link_to listings_path do %><i class="material-icons media-left media-middle">list</i> <span class="media-body" style="font-size: 15px;">Listings</span><% end %></li>
+
+            <li class="pmd-ripple-effect"><%= link_to new_search_path do %><i class="material-icons media-left media-middle">search</i> <span class="media-body" style="font-size: 15px;">Search Listings</span><% end %></li>
+
+            <% if signed_in? -%>
+              <li class="pmd-ripple-effect">
+                <%= link_to sign_out_path do %><i class="material-icons media-left media-middle">exit_to_app</i> <span class="media-body" style="font-size: 15px;">Logout</span><% end %>
+              </li>
+            <% else %>
+              <li class="pmd-ripple-effect">
+                <%= link_to sign_in_path do %><i class="material-icons media-left media-middle">exit_to_app</i> <span class="media-body" style="font-size: 15px;">Login</span><% end %>
+              </li>
+              <li class="pmd-ripple-effect">
+                <%= link_to sign_up_path do %><i class="material-icons media-left media-middle">add_person</i> <span class="media-body" style="font-size: 15px;">Sign Up</span><% end %>
+              </li>
+            <% end %>
+            </li>
+        </ul>
+    </aside>
+
+    <!-- Content -->
+    <div class="pmd-content" id="content">
+

@@ -48,150 +48,95 @@
 @import "http://propeller.in/components/textfield/css/textfield.css";
 /* Propeller checkbox */
 @import "http://propeller.in/components/checkbox/css/checkbox.css";
+/* Propeller sidebar */
+@import "http://propeller.in/components/sidebar/css/sidebar.css";
 
 /*----- Menu -----*/
 
-.container-fluid {
-	background-color: none;
-	-webkit-transition: all 500ms ease;
-	-moz-transition: all 500ms ease;
-	-ms-transition: all 500ms ease;
-	-o-transition: all 500ms ease;
-	transition: all 500ms ease;
-}
-.container-fluid.colored {
-    background: royalblue;
-    -webkit-transition: all 500ms ease;
-	-moz-transition: all 500ms ease;
-	-ms-transition: all 500ms ease;
-	-o-transition: all 500ms ease;
-	transition: all 500ms ease;
-  }
-
-.container-fluid:hover {
-    background: royalblue;
-    -webkit-transition: all 500ms ease;
-	-moz-transition: all 500ms ease;
-	-ms-transition: all 500ms ease;
-	-o-transition: all 500ms ease;
-	transition: all 500ms ease;
-  }
-
-
-img {
-	max-height: 100%;
-	max-width: 100%;
-}
-#profile-pic-block {
-	align-text: right;
-}
-
-#nav-bar-logo {
-	height: 75px;
-	width: auto;
-}
-.profile_pic {
-   	max-width: 100%;
-    max-height: 100%;
-	position: relative;
-  	top: 50%;
-  	transform: translateY(-50%);
-  	z-index: 7;
-  	border-radius: 25%;
-}
-
-#profile-pic-container {
-	height: 75px;
-	width: 75px;
-}
-
-.menu {
-    top: 0px;
-    padding-top: 15px;
-    width:100%;
-    /*background: dodgerblue;*/
-    position: fixed;
-    -webkit-transition: all 500ms ease;
-	-moz-transition: all 500ms ease;
-	-ms-transition: all 500ms ease;
-	-o-transition: all 500ms ease;
-	transition: all 500ms ease;
-  }
-
-.menu.colored {
-    top: 0px;
-    padding-top: 15px;
-    width:100%;
-    background: royalblue;
-    position: fixed;
+.pmd-btn-flat.btn-primary {
     color: black;
-    -webkit-transition: all 500ms ease;
-	-moz-transition: all 500ms ease;
-	-ms-transition: all 500ms ease;
-	-o-transition: all 500ms ease;
-	transition: all 500ms ease;
-  }
-
-.menu:hover {
-    top: 0px;
-    padding-top: 15px;
-    width:100%;
-    background: royalblue;
-    position: fixed;
-    -webkit-transition: all 500ms ease;
-	-moz-transition: all 500ms ease;
-	-ms-transition: all 500ms ease;
-	-o-transition: all 500ms ease;
-	transition: all 500ms ease;
-  }
-
-.menu ul {
-  display:inline-block;
-}
- 
-.menu li {
-	margin:0px 50px 0px 0px;
-	float:left;
-	list-style:none;
-/*	font-size: small;*/
-	text-transform: uppercase;
-	letter-spacing: 2px;
-}
- 
-.menu a {
-	color: black;
-	transition:color linear 0.15s;
-	text-decoration: none;
-}
- 
-.menu a:hover {
-	text-decoration: none;
-	color: black;
-	background-color: royalblue;
+    background-color: transparent;
 }
 
-#nav-options {
-	font-size: 20px;
-	color: black;
-	padding: 20px 0px;
-	margin-right: 10px;
+.pmd-btn-flat.btn-primary:hover {
+    color: white;
+    background-color: transparent;
+}
+.pmd-navbar.navbar .btn.pmd-btn-fab {
+    margin: 12px 0;
+    padding: 0;
+    border: 0px;
 }
 
-#backgroud-home {
-	background-image: url(capetown_banner1080.jpg);
-	width: 100%;
-	height: 700px;
-	/*background-size: cover;*/
+.navbar-inverse {
+    background-color: #0069C0;
+    border-color: #0069C0;
 }
 
+.navbar-brand:hover, .navbar-inverse .navbar-brand:focus {
+    color: #fff;
+    background-color: transparent;
+}
+
+.pmd-sidebar .pmd-user-info > a:hover, .pmd-sidebar .pmd-user-info > a:focus {
+	background-color: #0069C0;
+}
+
+.pmd-sidebar .pmd-user-info > a {
+	background-color: #2196f3;
+}
 /*----- Home Page -----*/
+
+#light-banner {
+	position: absolute;
+	height: 50px;
+	background-color: #6EC6FF;
+	color: black;
+	font-size: 23px;
+	width: 100%;
+	left: 0;
+	padding: 10px 10px;
+	font-family: 'Roboto', sans-serif;
+}
+
 #home-banner {
 	background-image: url(/assets/fansipan.jpg);
 	position: absolute;
-	top: -25px;
+	top: -15px;
+	left: 0px;
 	height: 465px;
 	width: 100%;
 	background-size: cover;
+}
+
+#home-banner-text {
+	color: whitesmoke;
+	text-align: center;
+	padding-top: 200px;
+	font-family: 'Roboto', sans-serif;
+	text-shadow: 2px 2px 5px black;
+}
+
+.btn-primary {
+	background-color: #2196f3;
+	border-color: #2196f3;
+	color: white;
+}
+
+.btn-primary:hover {
+	background-color: #0069C0;
+	border-color: white;
+	color: black;
+}
+
+#searchbutton {
+	background-color: #ed1c3a;
+	border-color: #ed1c3a;
+}
+
+#searchbutton:hover {
+	background-color: #F4524D;
+	border-color: white;
 }
 
 /*----- Listing Carousel -----*/

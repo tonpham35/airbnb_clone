@@ -5,6 +5,7 @@ class ReservationsController < ApplicationController
   # GET /reservations.json
   def index
     @reservations = Reservation.all
+    @users = current_user
   end
 
   # GET /reservations/1
@@ -15,6 +16,7 @@ class ReservationsController < ApplicationController
   # GET /reservations/new
   def new
     @reservation = Reservation.new
+    @users = current_user
   end
 
   # GET /reservations/1/edit

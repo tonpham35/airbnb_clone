@@ -4,6 +4,7 @@ class UsersController < ApplicationController
   def home
     @listings = Listing.all
     @listings = @listings.sample(16)
+    @users = current_user
   end  
 
   def index
@@ -11,12 +12,12 @@ class UsersController < ApplicationController
   end
 
   def edit
-  	@user = current_user
+  	@users = current_user
   end
 
   def update
-  	@user = current_user
-  	@user.update_attributes(first_name: params[:user][:first_name], last_name: params[:user][:last_name], email: params[:user][:email], profilepic: params[:user][:profilepic] )
+  	@users = current_user
+  	@users.update_attributes(first_name: params[:user][:first_name], last_name: params[:user][:last_name], email: params[:user][:email], profilepic: params[:user][:profilepic] )
     redirect_to root_path
   end
 

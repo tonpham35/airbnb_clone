@@ -1,9 +1,12 @@
 
 <div id='home-banner'>
-	
+	<h1 id='home-banner-text'>Connections - Connecting the World<br>One Vacation at a time!</h1>
+  <div class='text-center'><button type="button" class="btn btn-primary btn-lg" id="searchbutton">Search for Your Next Connection</button></div>
 </div>
-<h1 style="padding: 200px 0px">Recommendations</h1>
-<div class="row center-block" >
+<div id='light-banner' style="margin-top: 375px;">
+  <span>Recommendations</span>
+</div>
+<div class="row center-block" style="margin-top: 450px">
   <% @listings.each do |listing| %>
     <!--Media, Title, Description and Action area -->
       <div class="col-lg-3 col-md-6 col-sm-12">
@@ -44,8 +47,9 @@
             
             <!-- Card actions -->
             <div class="pmd-card-actions" style="position: absolute; bottom: 30px;">
-                <%= link_to listing do %><button class="btn pmd-btn-flat pmd-ripple-effect btn-primary" type="button">View Listing</button><% end %>
-                <button data-target="#large-dialog<%=listing.id%>" data-toggle="modal" class="btn pmd-btn-flat pmd-ripple-effect btn-primary" type="button">Quick Look</button>
+                <%= link_to listing do %><button class="btn pmd-btn-flat pmd-ripple-effect btn-info" type="button">View Listing</button><% end %>
+                
+                <button data-target="#large-dialog<%=listing.id%>" data-toggle="modal" class="btn pmd-btn-flat pmd-ripple-effect btn-info" type="button">Quick Look</button>
             </div>
         </div>
       </div>
@@ -126,4 +130,3 @@
 </div>
 <% end %>
 </div>
-
