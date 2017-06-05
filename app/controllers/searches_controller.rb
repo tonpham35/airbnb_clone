@@ -21,4 +21,4 @@ private
 	def search_params
 		params.require(:search).permit(:keyword, :state, :country, :no_bed, :no_room, :no_guest, :min_price, :max_price, :smoker, :pets, :instant_book, :property_type)
 	end
-end
+end 

@@ -33,16 +33,26 @@ class ImageUploader < CarrierWave::Uploader::Base
   #   # do something
   # end
 
+  def fix_exif_rotation #this is my attempted solution
+    manipulate! do |img|
+      img.tap(&:auto_orient)
+    end
+  end
+
+
   # Create different versions of your uploaded files:
   version :thumb do
+    process :fix_exif_rotation
     process resize_to_limit: [100, 100]
   end
 
   version :card do
+    process :fix_exif_rotation
     process resize_to_limit: [nil, 300]
   end
 
   version :carousel do
+    process :fix_exif_rotation
     process resize_to_limit: [nil, 500]
   end  
 

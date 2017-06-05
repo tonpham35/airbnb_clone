@@ -18,6 +18,7 @@ class Clearance::SessionsController < Clearance::BaseController
   end
 
   def create
+    
     @user = authenticate(params)
 
     sign_in(@user) do |status|

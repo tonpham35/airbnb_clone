@@ -50,8 +50,23 @@
 @import "http://propeller.in/components/checkbox/css/checkbox.css";
 /* Propeller sidebar */
 @import "http://propeller.in/components/sidebar/css/sidebar.css";
+/* Propeller tab */
+@import "http://propeller.in/components/tab/css/tab.css";
+/* Range Slider css */
+@import "http://propeller.in/components/range-slider/css/nouislider.min.css";
+/*Propeller Range Slider css*/
+@import "http://propeller.in/components/range-slider/css/range-slider.css";
+/* Select2 css */
+@import "http://propeller.in/components/select2/css/select2.min.css";
+@import "http://propeller.in/components/select2/css/select2-bootstrap.css";
+/* Propeller select2 */
+@import "http://propeller.in/components/select2/css/pmd-select2.css";
 
 /*----- Menu -----*/
+
+a:hover {
+	background-color: transparent;
+}
 
 .pmd-btn-flat.btn-primary {
     color: black;
@@ -103,6 +118,16 @@
 	background-image: url(/assets/fansipan.jpg);
 	position: absolute;
 	top: -15px;
+	left: 0px;
+	height: 465px;
+	width: 100%;
+	background-size: cover;
+}
+
+#search-banner {
+	background-image: url(/assets/petronas.jpg);
+	position: absolute;
+	top: 65px;
 	left: 0px;
 	height: 465px;
 	width: 100%;
@@ -172,4 +197,65 @@
 
 #card-pic-small {
 	height: 250px;
+}
+
+/*----- Pop-up Login -----*/
+#log-in {
+	display: none;
+	z-index: 9;
+	position: fixed;
+	top: 0;	
+	margin: 0px 0px;
+	padding: 0px;
+}
+
+#login-box {
+	z-index: 10;
+	position: fixed;
+	right: 5px;
+	top:68px;
+	/*height: 300px;*/
+	width: 90%;
+	margin-right: 5%;	
+	padding: 0px;
+	background-color: white;
+	box-shadow: 4px 4px 13px 3px black;
+	border-radius: 15px;
+}
+
+.pmd-range-slider .noUi-tooltip {
+	background-color: #0069C0;
+}
+
+.pmd-range-slider.noUi-horizontal .noUi-handle-upper .noUi-tooltip:before, .pmd-range-slider.noUi-horizontal .noUi-handle-lower .noUi-tooltip:before {
+	background: #0069C0;
+}
+
+.noUi-connect {
+	background: #0069C0;
+}
+
+/*----- User Profile -----*/
+
+#profile-info {
+	background-color: white; 
+	height: 100%;
+}
+
+#user-tab {
+	width: 100%;
+	margin-top: 10px;
+}
+
+.pmd-tabs-bg {
+    background-color: #2196f3;
+    color: black;
+}
+
+.pmd-tabs .pmd-tab-active-bar {
+    position: absolute;
+    bottom: 0;
+    width: 25%;
+    height: 5px;
+    background: #ed1c3a;
 }

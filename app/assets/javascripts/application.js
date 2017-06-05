@@ -40,6 +40,10 @@
 });
 
 $(document).ready(function(){
+    $('.pmd-dropdown-hover').dropdownHover().dropdown();
+
+    $('.pmd-tabs').pmdTab();
+    
     $(function() {              
         $('#datetimepicker1').datetimepicker({
         	format: 'DD/MM/YYYY'
@@ -54,6 +58,35 @@ $(document).ready(function(){
     $("#datetimepicker1").on("dp.change", function (e) {
         $('#datetimepicker').data("DateTimePicker").minDate(e.date);
     });
-    // Start date picke on chagne event [select maxmimum date for start date datepicker]
+    // Propeller Select2
+    // Simple Selectbox
+    $(".select-simple").select2({
+        theme: "bootstrap",
+        minimumResultsForSearch: Infinity,
+    });
+    // multiple range slider with lower tooltip at bottom
+    var pmdSliderRangeTooltip = document.getElementById('pmd-slider-range-tooltip-bottom-lower');
+
+    noUiSlider.create(pmdSliderRangeTooltip, {
+        start: [0, 1000],
+        connect: true,
+        tooltips: [ wNumb({ decimals: 0 }), wNumb({ decimals: 0 }) ],
+        range: {
+            'min': 0,
+            'max': 1000
+        }
+    });
 });
-   
+
+// Show/hide specified div
+function clickShow(w) {
+    var x = document.getElementById(w);
+    if (x.style.display === '') {
+        x.style.display = 'block';
+    } else {
+        x.style.display = '';
+    }
+}
+
+
+        

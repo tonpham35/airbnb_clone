@@ -15,7 +15,8 @@ Rails.application.routes.draw do
       only: [:create, :edit, :update]
   end
 
-  resources :users, only: [:edit, :update, :index, :show]
+  resources :users, only: [:edit, :update, :index, :show, :destroy]
+  delete "/users/:id(.:format)" => "users#destroy", as: "delete_user"
 
   resources :listings
 

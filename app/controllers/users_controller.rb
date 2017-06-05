@@ -5,6 +5,7 @@ class UsersController < ApplicationController
     @listings = Listing.all
     @listings = @listings.sample(16)
     @users = current_user
+    @search = Search.new
   end  
 
   def index
@@ -23,6 +24,14 @@ class UsersController < ApplicationController
 
    def show
     @users = User.find(params[:id])
+  end
+
+  def destroy
+    @users.destroy
+    respond_to do |format|
+      format.html { redirect_to root_path, notice: 'User was successfully destroyed.' }
+      format.json { head :no_content }
+    end
   end
 
   private
