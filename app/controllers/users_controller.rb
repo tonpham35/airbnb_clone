@@ -5,7 +5,6 @@ class UsersController < ApplicationController
     @listings = Listing.all
     @listings = @listings.sample(16)
     @users = current_user
-    @search = Search.new
   end  
 
   def index

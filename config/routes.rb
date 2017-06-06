@@ -1,5 +1,8 @@
 Rails.application.routes.draw do
 
+  get 'braintree/new'
+  post 'braintree/checkout'
+
   resources :searches
   resources :reservations
   get "/auth/:provider/callback" => "sessions#create_from_omniauth"

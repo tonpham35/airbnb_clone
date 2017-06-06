@@ -11,7 +11,6 @@
 // about supported directives.
 //
 //= require rails-ujs
-//= require turbolinks
 //= require jquery
 //= require bootstrap-sprockets
 //= require moment
@@ -30,14 +29,7 @@
 //      }
 //  });
 
-  $(window).scroll(function() {
-    if($(this).scrollTop() > 100)  /*height in pixels when the navbar becomes non opaque*/ 
-    {
-        $('.menu').addClass('colored');
-    } else {
-        $('.menu').removeClass('colored');
-    }
-});
+  
 
 $(document).ready(function(){
     $('.pmd-dropdown-hover').dropdownHover().dropdown();
@@ -76,6 +68,15 @@ $(document).ready(function(){
             'max': 1000
         }
     });
+
+    $(window).scroll(function() {
+    if($(this).scrollTop() > 100)  /*height in pixels when the navbar becomes non opaque*/ 
+    {
+        $('.menu').addClass('colored');
+    } else {
+        $('.menu').removeClass('colored');
+    }
+});
 });
 
 // Show/hide specified div

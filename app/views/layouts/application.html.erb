@@ -6,15 +6,15 @@
 	<%= csrf_meta_tag %>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+	<%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+
 	<!-- Sidebar js -->
 	<script type="text/javascript" language="javascript" src="http://propeller.in/components/sidebar/js/sidebar.js"></script>
 	<!-- Propeller Dropdown js -->
 	<script type="text/javascript" language="javascript" src="http://propeller.in/components/dropdown/js/dropdown.js"></script>
 	<!-- Propeller ripple effect js -->
 	<script type="text/javascript" language="javascript" src="http://propeller.in/components/button/js/ripple-effect.js"></script>
-  	<%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+ 
   	<!-- Propeller modal js -->
 	<script type="text/javascript" src="http://propeller.in/components/modal/js/modal.js"></script>
 	<!-- Propeller checkbox js -->
@@ -37,7 +37,6 @@
 	<!-- Propeller Select2 -->
 	<script type="text/javascript" src="http://propeller.in/components/select2/js/pmd-select2.js"></script>
 
-</head>
 </head>
 <body style="background-color: lightgrey;">
 
@@ -81,7 +80,7 @@
 				<a id="box-off" class=".pmd-z-depth-3" style="float: right; padding: 6px 6px" onclick="clickShow('log-in')">X</a>
 				<h1 style="text-align: center; font-size: 30px; margin-bottom: 0px;">Search Connections</h1>
 				<div class='row' style="margin: 0px 15px 0px 15px;">
-					<%= form_with(model: @search, local: true) do |form| %>
+					<%= form_with(model: Search.new, local: true) do |form| %>
 						<div class="form-group col-md-2 col-sm-4" style="top: 8px;">
 							<div class="form-group pmd-textfield pmd-textfield-floating-label">
 							   <label for="regular1" class="control-label">Keyword</label>

@@ -15,3 +15,4 @@ Rails.application.config.assets.paths << Rails.root.join('node_modules')
 
 Rails.application.config.assets.precompile += %w( users.css )
 Rails.application.config.assets.precompile += %w( listings.css )
+Rails.application.config.assets.precompile += %w( braintree.css )
