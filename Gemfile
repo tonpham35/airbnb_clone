@@ -48,7 +48,7 @@ gem 'bootstrap3-datetimepicker-rails'
 gem 'braintree'
 gem 'letter_opener', :group => :development
 gem 'sidekiq'
-gem 'rails_12factor'
+gem 'rails_12factor', group: :production
 gem 'foreman'
 
 

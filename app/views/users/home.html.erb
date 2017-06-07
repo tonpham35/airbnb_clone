@@ -74,7 +74,7 @@
           <% end %> 
         </div>
         <div class="media-body media-middle">
-          <h3 class="pmd-card-title-text"><%= link_to root_path do %><%= listing.name %><% end %></h3>
+          <h3 class="pmd-card-title-text"><%= link_to listing do %><%= listing.name %><% end %></h3>
           <span class="pmd-card-subtitle-text"><%= listing.address1 %>, <%= listing.state %></span><br>
           <span class="pmd-card-subtitle-text">Owner: <%= listing.user.first_name %> <%= listing.user.last_name %></span></div>
       </div>
@@ -115,6 +115,8 @@
           </a>
         </div>
 
+      <% elsif listing.photos.count == 1 %>
+        <%= image_tag listing.photos[0].carousel.url %> 
       <% else %>
         <img width="1184" height="666" class="img-responsive" src="http://propeller.in/assets/images/profile-pic.png"> 
       <% end %>
