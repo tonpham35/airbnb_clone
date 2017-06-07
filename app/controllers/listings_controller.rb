@@ -4,19 +4,23 @@ class ListingsController < ApplicationController
   # GET /listings
   # GET /listings.json
   def index
-    @listings = Listing.all
     @listings = Listing.order(:id).page params[:page]
+    @users = current_user
   end
 
   # GET /listings/1
   # GET /listings/1.json
   def show
     @listing = Listing.find(params[:id])
+    @reservation = Reservation.new
+    @user = current_user
+
   end
 
   # GET /listings/new
   def new
     @listing = Listing.new
+    @users = current_user
   end
 
   # GET /listings/1/edit

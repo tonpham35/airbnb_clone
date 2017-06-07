@@ -13,13 +13,303 @@
  *= require_tree .
  *= require_self
  */
-// "bootstrap-sprockets" must be imported before "bootstrap" and "bootstrap/variables"
+
 @import "bootstrap-sprockets";
 @import "bootstrap";
+@import 'bootstrap-datetimepicker';
+/* Bootstrap css */
+@import "https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css";
+/* Propeller typography */
+@import "http://propeller.in/components/typography/css/typography.css";
+/* Propeller buttons */
+@import "http://propeller.in/components/button/css/button.css";
+/* Propeller icons */
+@import "http://fonts.googleapis.com/icon?family=Material+Icons";
+@import "http://propeller.in/components/icons/css/google-icons.css";
+/* Propeller input */
+@import "http://propeller.in/components/textfield/css/textfield.css";
+/* Propeller card css */
+@import "http://propeller.in/components/card/css/card.css";
+/* Bootstrap datetimepicker */
+@import "http://propeller.in/components/datetimepicker/css/bootstrap-datetimepicker.css";
+/* Propeller datetimepicker */
+@import "http://propeller.in/components/datetimepicker/css/pmd-datetimepicker.css";
+/* Propeller navbar */
+@import "http://propeller.in/components/navbar/css/navbar.css";
+/* Propeller dropdowns */
+@import "http://propeller.in/components/dropdown/css/dropdown.css";
+/* Propeller list */
+@import "http://propeller.in/components/list/css/list.css";
+/* Propeller modal */
+@import "http://propeller.in/components/modal/css/modal.css";
+/* Propeller radio */
+@import "http://propeller.in/components/radio/css/radio.css";
+/* Propeller textfield */
+@import "http://propeller.in/components/textfield/css/textfield.css";
+/* Propeller checkbox */
+@import "http://propeller.in/components/checkbox/css/checkbox.css";
+/* Propeller sidebar */
+@import "http://propeller.in/components/sidebar/css/sidebar.css";
+/* Propeller tab */
+@import "http://propeller.in/components/tab/css/tab.css";
+/* Range Slider css */
+@import "http://propeller.in/components/range-slider/css/nouislider.min.css";
+/*Propeller Range Slider css*/
+@import "http://propeller.in/components/range-slider/css/range-slider.css";
+/* Select2 css */
+@import "http://propeller.in/components/select2/css/select2.min.css";
+@import "http://propeller.in/components/select2/css/select2-bootstrap.css";
+/* Propeller select2 */
+@import "http://propeller.in/components/select2/css/pmd-select2.css";
 
-.profile_pic {
-   	max-width: 100%;
-    max-height: 100%;
-	border-radius: 100%;
-	display: container;
+/*----- Menu -----*/
+
+a:hover {
+	background-color: transparent;
+}
+
+.pmd-btn-flat.btn-primary {
+    color: #f5f5f5;
+    background-color: #337ab7;
+}
+
+.pmd-btn-flat.btn-primary:hover {
+    color: black;
+    background-color: #2196f3;
+}
+
+.pmd-navbar.navbar .btn.pmd-btn-fab {
+    margin: 12px 0;
+    padding: 0;
+    border: 0px;
+}
+
+.navbar-inverse {
+    background-color: #0069C0;
+    border-color: #0069C0;
+}
+
+.navbar-brand:hover, .navbar-inverse .navbar-brand:focus {
+    color: #fff;
+    background-color: transparent;
+}
+
+.pmd-sidebar .pmd-user-info > a:hover, .pmd-sidebar .pmd-user-info > a:focus {
+	background-color: #0069C0;
+}
+
+.pmd-sidebar .pmd-user-info > a {
+	background-color: #2196f3;
+}
+/*----- Home Page -----*/
+
+#light-banner {
+	position: absolute;
+	height: 50px;
+	background-color: #6EC6FF;
+	color: black;
+	font-size: 23px;
+	width: 100%;
+	left: 0;
+	padding: 10px 10px;
+	font-family: 'Roboto', sans-serif;
+}
+
+#home-banner {
+	background-image: url(/assets/fansipan.jpg);
+	position: absolute;
+	top: -15px;
+	left: 0px;
+	height: 465px;
+	width: 100%;
+	background-size: cover;
+}
+
+#home-banner-kl {
+	background-image: url(/assets/petronas.jpg);
+	position: absolute;
+	top: 25px;
+	left: 0px;
+	height: 465px;
+	width: 100%;
+	background-size: cover;
+}
+
+#home-banner-penang {
+	background-image: url(/assets/penang-pano.jpg);
+	position: absolute;
+	top: 0px;
+	left: 0px;
+	height: 465px;
+	width: 100%;
+	background-size: cover;
+}
+
+#home-banner-sabah {
+	background-image: url(/assets/mount_kinabalu_Fotor.jpg);
+	position: absolute;
+	top: 20px;
+	left: 0px;
+	height: 404px;
+	width: 100%;
+	background-size: cover;
+}
+
+#home-banner-johor {
+	background-image: url(/assets/johor_Fotor.jpg);
+	position: absolute;
+	top: 20px;
+	left: 0px;
+	height: 560px;
+	width: 100%;
+	background-size: cover;
+}
+
+#search-banner {
+	background-image: url(/assets/petronas.jpg);
+	position: absolute;
+	top: 65px;
+	left: 0px;
+	height: 465px;
+	width: 100%;
+	background-size: cover;
+}
+
+#home-banner-text {
+	color: whitesmoke;
+	text-align: center;
+	padding-top: 200px;
+	font-family: 'Roboto', sans-serif;
+	text-shadow: 2px 2px 5px black;
+	z-index: 2;
+}
+
+.nav-tabs {
+  white-space: nowrap;
+  overflow-x: auto;
+  overflow-y: hidden;
+  min-height: 46px;
+}
+
+.btn-primary {
+	background-color: #2196f3;
+	border-color: #2196f3;
+	color: white;
+}
+
+.btn-primary:hover {
+	background-color: #0069C0;
+	border-color: white;
+	color: black;
+}
+
+#searchbutton {
+	background-color: #ed1c3a;
+	border-color: #ed1c3a;
+}
+
+#searchbutton:hover {
+	background-color: #F4524D;
+	border-color: white;
+}
+
+/*----- Listing Carousel -----*/
+.carousel-inner > .item > img {
+	margin: auto auto;
+	max-height: 100%;
+	max-width: 100%;
+}
+
+.item{
+    position: relative;
+    height:500px;
+    
+}
+
+.carousel-img {
+    max-height: 500px;
+    position: absolute;   
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.listing-preview {
+	max-height: 90px;
+	max-width: auto;
+}
+
+/*----- Card -----*/
+.card-thumb {
+	height: 40px;
+	width: 40px;
+}
+
+#card-pic-small {
+	height: 250px;
+}
+
+/*----- Pop-up Login -----*/
+#log-in {
+	display: none;
+	z-index: 9;
+	position: fixed;
+	top: 0;	
+	margin: 0px 0px;
+	padding: 0px;
+}
+
+#login-box {
+	z-index: 10;
+	position: fixed;
+	right: 5px;
+	top:68px;
+	/*height: 300px;*/
+	width: 90%;
+	margin-right: 5%;	
+	padding: 0px;
+	background-color: white;
+	box-shadow: 4px 4px 13px 3px black;
+	border-radius: 15px;
+}
+
+.pmd-range-slider .noUi-tooltip {
+	background-color: #0069C0;
+}
+
+.pmd-range-slider.noUi-horizontal .noUi-handle-upper .noUi-tooltip:before, .pmd-range-slider.noUi-horizontal .noUi-handle-lower .noUi-tooltip:before {
+	background: #0069C0;
+}
+
+.noUi-connect {
+	background: #0069C0;
+}
+
+
+div#users-tab {
+    padding: 0;
+}
+
+/*----- User Profile -----*/
+
+#profile-info {
+	background-color: white; 
+	height: 100%;
+}
+
+#user-tab {
+	width: 100%;
+	margin-top: 10px;
+}
+
+.pmd-tabs-bg {
+    background-color: #2196f3;
+    color: black;
+}
+
+.pmd-tabs .pmd-tab-active-bar {
+    position: absolute;
+    bottom: 0;
+    width: 25%;
+    height: 5px;
+    background: #ed1c3a;
 }

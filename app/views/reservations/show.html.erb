@@ -1,23 +1,26 @@
-<p id="notice"><%= notice %></p>
+<p id="notice" style="padding-top: 120px;"><%= notice %></p>
 
 <p>
   <strong>User:</strong>
-  <%= @reservation.user %>
+  <%= @reservation.user.first_name %> <%= @reservation.user.last_name %>
+</p>
+
+<p>
+  <strong>Property Owner:</strong>
+  <%= @reservation.listing.user.first_name %> <%= @reservation.listing.user.last_name %>
 </p>
 
 <p>
   <strong>Listing:</strong>
-  <%= @reservation.listing %>
+  <%= @reservation.listing.name %>
+  <%= @reservation.listing.address1 %>
+  <%= @reservation.listing.state %>
+  <%= @reservation.listing.country %>
 </p>
 
 <p>
   <strong>Total price:</strong>
-  <%= @reservation.total_price %>
-</p>
-
-<p>
-  <strong>Currency:</strong>
-  <%= @reservation.currency %>
+  <%= @reservation.currency %><%= @reservation.total_price %>
 </p>
 
 <p>

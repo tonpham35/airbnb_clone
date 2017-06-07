@@ -1,57 +1,205 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <%= javascript_include_tag 'application' %>
-  <%= csrf_meta_tag %>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-  <%= stylesheet_link_tag    "application", :media => "all" %>
+<title>Connections Peer Listings</title>
+<%= favicon_link_tag 'connections-dark.png' %>
+	<%= csrf_meta_tag %>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+
+	<!-- Sidebar js -->
+	<script type="text/javascript" language="javascript" src="http://propeller.in/components/sidebar/js/sidebar.js"></script>
+	<!-- Propeller Dropdown js -->
+	<script type="text/javascript" language="javascript" src="http://propeller.in/components/dropdown/js/dropdown.js"></script>
+	<!-- Propeller ripple effect js -->
+	<script type="text/javascript" language="javascript" src="http://propeller.in/components/button/js/ripple-effect.js"></script>
+ 
+  	<!-- Propeller modal js -->
+	<script type="text/javascript" src="http://propeller.in/components/modal/js/modal.js"></script>
+	<!-- Propeller checkbox js -->
+	<script type="text/javascript" src="http://propeller.in/components/checkbox/js/checkbox.js"></script>
+	<!-- Propeller radio js -->
+	<script type="text/javascript" src="http://propeller.in/components/radio/js/radio.js"></script>
+	<!-- Propeller textfield js -->
+	<script type="text/javascript" src="http://propeller.in/components/textfield/js/textfield.js"></script>
+	<link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+	<!-- Jquery js -->
+	<!-- Propeller tabs js -->
+	<script type="text/javascript" language="javascript" src="http://propeller.in/components/tab/js/tab-scrollable.js"></script>
+	<!-- Propeller Dropdown hover js -->
+	<script src="http://propeller.in/components/dropdown/js/bootstrap-hover-dropdown.js"></script>
+	<!-- Slider js -->
+	<script src="http://propeller.in/components/range-slider/js/wNumb.js"></script>
+	<script src="http://propeller.in/components/range-slider/js/nouislider.js"></script>
+	<!-- Select2 js-->
+	<script type="text/javascript" src="http://propeller.in/components/select2/js/select2.full.js"></script>
+	<!-- Propeller Select2 -->
+	<script type="text/javascript" src="http://propeller.in/components/select2/js/pmd-select2.js"></script>
 
 </head>
-</head>
-<body>
-  <div id="header">
-    <% if signed_in? -%>
-      <%= button_to t(".sign_out"), sign_out_path, method: :delete %>
-      <%= current_user.email %>
-    <% else -%>
-      <%= link_to t(".sign_in"), sign_in_path %>
-    <% end -%>
-  </div>
+<body style="background-color: lightgrey;">
 
-  <div style='background-color: black; height: 100px; width: 100px'>
-  <%= link_to root_path do %>
-    <% if signed_in? -%>
-      <% if current_user.profilepic.thumb.url != nil %>
-        <%=image_tag current_user.profilepic.thumb.url, class:'profile_pic'%>
-      <% else -%>
-        <img class='profile_pic' src="/blank_profile_pic_Fotor.png">
-      <% end -%>
-    <% else -%>
-        <img class='profile_pic' src="/blank_profile_pic_Fotor.png">
-    <% end -%>
-  <% end %>
-  </div>
+<%= render partial: "layouts/navbar" %>
 
-  <div id="flash">
-    <% flash.each do |key, value| -%>
-      <div id="flash_<%= key %>"><%=h value %></div>
-    <% end %>
-  </div>
+<!-- Dialog with Form Elements -->
+<div tabindex="-1" class="modal fade" id="sign-in-form-dialog" style="display: none;" aria-hidden="true">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header pmd-modal-bordered">
+				<button aria-hidden="true" data-dismiss="modal" class="close" type="button">CLOSE</button>
+				<h2 class="pmd-card-title-text" style="font-size: 20px; font-weight: bold;">Sign In</h2>
+			</div>
+			<%= form_for :session, url: session_path, remote: true do |form| %>
+			<div class="modal-body">
+					<div class="form-group pmd-textfield pmd-textfield-floating-label">
+						<label for="first-name">Email Address</label>
+						<input type="text" class="mat-input form-control" name=session[email]>
+					</div>
+					<div class="form-group pmd-textfield pmd-textfield-floating-label">
+						<label for="first-name">Password</label>
+						<input type="password" class="mat-input form-control" name=session[password]>
+					</div>
+					<label class="checkbox-inline pmd-checkbox pmd-checkbox-ripple-effect">
+						<input type="checkbox" value="">
+						<span class="pmd-checkbox"> Accept Terms and conditions</span> </label>
+				
+			</div>
+			<div class="pmd-modal-action">
+				<button class="btn pmd-ripple-effect btn-primary"><%= form.submit %> </button>
+				<%= link_to "/auth/facebook" do %>
+				<img id="facebook_login" class=".pmd-z-depth-3" src="/assets/facebook_login.png" alt="Sign In With Facebook" height='40px'><% end %>
+			</div>
+			<%end%>
+		</div>
+	</div>
+</div>
 
-<% if current_user != nil %>
-  <% if current_user.superadmin? %>
-    <h3>Welcome Super Admin</h3>
-  <% elsif current_user.moderator? %>
-    <h3>Welcome, Moderator</h3>
-  <% else %>
-    <h3>Welcome Customer</h3>
-  <% end %>
-<% end %>
+		<div id="log-in">
+			<div id="login-box">
+				<a id="box-off" class=".pmd-z-depth-3" style="float: right; padding: 6px 6px" onclick="clickShow('log-in')">X</a>
+				<h1 style="text-align: center; font-size: 30px; margin-bottom: 0px;">Search Connections</h1>
+				<div class='row' style="margin: 0px 15px 0px 15px;">
+					<%= form_with(model: Search.new, local: true) do |form| %>
+						<div class="form-group col-md-2 col-sm-4" style="top: 8px;">
+							<div class="form-group pmd-textfield pmd-textfield-floating-label">
+							   <label for="regular1" class="control-label">Keyword</label>
+							   <input type="text" id="regular1" class="form-control" name=search[keyword]>
+							</div>
+						</div>
+						<div class="form-group col-md-2 col-sm-4 text-center" style="margin-left: 0px">
+							<div class="form-group pmd-textfield pmd-textfield-floating-label">       
+								<label>Property Type</label>
+								<select class="select-simple form-control pmd-select2" style="width: 100%" name=search[property_type]>
+							        <option></option>
+							        <% Listing.distinct.pluck(:property_type).each do |value| %>
+							        	<option><%= value %></option>
+							        <% end %>
+							    </select>
+							</div>
+						</div>
+						<div class="form-group col-md-2 col-sm-4 text-center" style="margin-left: 0px">
+							<div class="form-group pmd-textfield pmd-textfield-floating-label">       
+								<label>State</label>
+								<select class="select-simple form-control pmd-select2" style="width: 100%" name=search[state]>
+							        <option></option>
+							        <% Listing.distinct.pluck(:state).each do |value| %>
+							        	<option><%= value %></option>
+							        <% end %>
+							    </select>
+							</div>
+						</div>
+						<div class="form-group col-md-2 col-sm-4 text-center" style="margin-left: 0px">
+							<div class="form-group pmd-textfield pmd-textfield-floating-label">       
+								<label>Country</label>
+								<select class="select-simple form-control pmd-select2" style="width: 100%" name=search[country]>
+							        <option></option>
+							        <% Listing.distinct.pluck(:country).each do |value| %>
+							        	<option><%= value %></option>
+							        <% end %>
+							    </select>
+							</div>
+						</div>
+						<div class="form-group col-md-2 col-sm-4 text-center" style="margin-left: 0px">
+							<div class="form-group pmd-textfield pmd-textfield-floating-label">       
+								<label>Number of Beds</label>
+								<select class="select-simple form-control pmd-select2" style="width: 100%" name=search[no_bed]>
+							        <option></option>
+							        <% ((1..10).to_a).each do |value| %>
+							        	<option><%= value %></option>
+							        <% end %>
+							    </select>
+							</div>
+						</div>
+						<div class="form-group col-md-2 col-sm-4 text-center" style="margin-left: 0px">
+							<div class="form-group pmd-textfield pmd-textfield-floating-label">       
+								<label>Number of Guest</label>
+								<select class="select-simple form-control pmd-select2" style="width: 100%" name=search[no_guest]>
+							        <option></option>
+							        <% ((1..15).to_a).each do |value| %>
+							        	<option><%= value %></option>
+							        <% end %>
+							    </select>
+							</div>
+						</div>
+						<div class="col-md-3 col-sm-6">
+							<label>Price Per Day (MYR)</label>
+							<div id="pmd-slider-range-tooltip-bottom-lower"  class="pmd-range-slider pmd-range-tooltip pmd-range-tooltip"></div>
+						</div>
+						<div class="col-md-2 col-sm-2">
+							<div class="checkbox pmd-default-theme">
+	    						<label class="pmd-checkbox pmd-checkbox-ripple-effect">
+	        						<input type="checkbox" value="1" name=search[smoker]>
+	        						<span> Smoking Allowed</span>
+	    						</label>
+							</div>
+							<div class="checkbox pmd-default-theme">
+	    						<label class="pmd-checkbox pmd-checkbox-ripple-effect">
+	        						<input type="checkbox" value="1" name=search[pets]>
+	        						<span> Pets Allowed</span>
+	    						</label>
+							</div>
+							<div class="checkbox pmd-default-theme">
+	    						<label class="pmd-checkbox pmd-checkbox-ripple-effect">
+	        						<input type="checkbox" value="1" name=search[instant_book]>
+	        						<span> Instant Book</span>
+	    						</label>
+							</div>
+						</div>
+						<div class='col-md-2 col-sm-4'>
+					        <%= form.label :start_date %>
+					        <div class="form-group">
+					            <div class='input-group date' id='datetimepicker1'>
+					            	<%= form.text_field :start_date, class: 'form-control' %>
+					                <span class="input-group-addon">
+					                	<span class="glyphicon glyphicon-calendar"></span>
+					                </span>
+					            </div>
+					        </div>
+					    </div>
+					    <div class='col-md-2 col-sm-4'>
+					        <%= form.label :end_date %>
+				        	<div class="form-group">
+				        		<div class='input-group date' id='datetimepicker'>
+				            		<%= form.text_field :end_date, class: 'form-control' %>
+				            		<span class="input-group-addon">
+				                		<span class="glyphicon glyphicon-calendar"></span>
+				            		</span>
+				            	</div>
+				        	</div>
+					    </div>
+						<div class="col-md-1 col-sm-1">
+							<%= form.submit do %><button class="btn btn-lg pmd-btn-raised pmd-ripple-effect btn-primary" type="button" style="background-color: #0069C0; position: absolute; top: 20px;">Submit</button><% end %>
+						</div>
+					<% end %>
+				</div>
+			</div>
+		</div>
 
-  <%= yield %>
+
+<%= yield %>
+
+    <div class="pmd-sidebar-overlay"></div>
+</section>
 </body>
 </html>

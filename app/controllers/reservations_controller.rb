@@ -5,6 +5,7 @@ class ReservationsController < ApplicationController
   # GET /reservations.json
   def index
     @reservations = Reservation.all
+    @users = current_user
   end
 
   # GET /reservations/1
@@ -15,18 +16,31 @@ class ReservationsController < ApplicationController
   # GET /reservations/new
   def new
     @reservation = Reservation.new
+    @users = current_user
   end
 
   # GET /reservations/1/edit
   def edit
+    @reservation = Reservation.find(params[:id])
+    @listing = Listing.find(@reservation.listing.id)
+    @user = current_user
   end
 
   # POST /reservations
   # POST /reservations.json
   def create
     @reservation = Reservation.new(reservation_params)
+    @reservation.start_date = Date.strptime(reservation_params[:start_date],'%d/%m/%Y').strftime('%d-%m-%Y')
+    @reservation.end_date = Date.strptime(reservation_params[:end_date],'%d/%m/%Y').strftime('%d-%m-%Y') 
+    @listing  = Listing.find(@reservation.listing_id) 
+    @reservation.total_price = @listing.price_per_day * ((@reservation.end_date - @reservation.start_date).to_i)
+    @reservation.currency = @listing.currency
+
     respond_to do |format|
       if @reservation.save
+        #ReservationMailer.booking_email(@reservation.user, @listing.user, @reservation.id).deliver_now
+        # ReservationJob.perform_now(@reservation.id ,@listing.id)
+        ReservationMailer.booking_email(@reservation.user, @listing.user, @reservation.id).deliver_later
         format.html { redirect_to @reservation, notice: 'Reservation was successfully created.' }
         format.json { render :show, status: :created, location: @reservation }
       else
@@ -68,6 +82,6 @@ class ReservationsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def reservation_params
-      params.require(:reservation).permit(:user_id, :listing_id, :total_price, :currency, :start_date, :end_date, :message)
+      params.require(:reservation).permit(:user_id, :listing_id, :total_price, :currency, :start_date, :end_date, :message, :num_guest)
     end
 end

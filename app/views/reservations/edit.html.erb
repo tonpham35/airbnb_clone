@@ -1,6 +1,48 @@
-<h1>Editing Reservation</h1>
+<h1 style="padding-top: 120px">Editing Reservation</h1>
 
-<%= render 'form', reservation: @reservation %>
+<%= form_with(model: @reservation, local: true) do |form| %>
+  <% if @reservation.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@reservation.errors.count, "error") %> prohibited this reservation from being saved:</h2>
+
+      <ul>
+      <% @reservation.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+ 
+  <div class="field">
+    <%= form.hidden_field :user_id, value: @user.id %>
+    <%= form.hidden_field :listing_id, value: @listing.id %>
+  </div>
+
+  <div class="field">
+    <%= form.label :start_date %>
+    <%= form.date_select :start_date, id: :reservation_start_date %>
+  </div>
+
+  <div class="field">
+    <%= form.label :end_date %>
+    <%= form.date_select :end_date, id: :reservation_end_date %>
+  </div>
+
+  <div class="field">
+    <% arr = ((1..@listing.max_guest).to_a).map!{|i| i.to_s } %>
+    <%= form.label :Number_of_Guest %>
+    <%= form.select :num_guest, arr, :prompt => 'Select One' %>
+  </div>
+
+  <div class="field">
+    <%= form.label :message %>
+    <%= form.text_field :message, id: :reservation_message %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>
 
 <%= link_to 'Show', @reservation %> |
 <%= link_to 'Back', reservations_path %>
