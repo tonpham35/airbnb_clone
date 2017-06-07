@@ -1,3 +1,5 @@
+<% if current_user == User.find(params[:id]) %>
+
 <h1 style="padding-top: 120px"> Additional Information </h1>
 
 
@@ -7,5 +9,9 @@
     <div class="submit-field">
       <%= form.submit %>
     </div>
+<% end %>
+
+<% else %>
+	redirect_to root_path
 <% end %>
 

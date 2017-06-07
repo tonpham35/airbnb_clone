@@ -8,10 +8,7 @@
       <% end %>
     </div>
     <span>Full Name: <%= @users.first_name %> <%= @users.last_name %></span><br>
-    <span>Email Address: <%= @users.email %></span><br>
-    <span><%= link_to edit_user_path(@users) do %> Edit Profile <% end %></span><br>
-    <span><%= link_to 'Create A New Listing', new_listing_path %><br></span>
-    <span><%= link_to 'Delete My Account', delete_user_path(@users), method: :delete, data: { confirm: 'Are you sure?' } %></span>
+    <span>Email Address: <%= @users.email %></span>
   </div>
 
     <!--Default tab example -->

@@ -1,3 +1,6 @@
+<% x = Reservation.find(params[:id]) %>
+<% if current_user == x.user %>
+
 <h1 style="padding-top: 120px">Editing Reservation</h1>
 
 <%= form_with(model: @reservation, local: true) do |form| %>
@@ -46,3 +49,7 @@
 
 <%= link_to 'Show', @reservation %> |
 <%= link_to 'Back', reservations_path %>
+
+<% else %>
+  redirect_to root_path
+<% end %>

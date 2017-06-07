@@ -126,6 +126,7 @@
   <%= @listing.name %>
 </p>
 
+<% if current_user != nil %>
 <h2> Reserve this property </h2>
 
 <%= form_with(model: @reservation, local: true) do |form| %>
@@ -187,6 +188,10 @@
   <div class="actions">
     <%= form.submit %>
   </div>
+<% end %>
+
+<% else %>
+<h2> Sign In to Reserve </h2>
 <% end %>
 
 <%= link_to 'Back', listings_path %>
