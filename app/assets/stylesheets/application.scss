@@ -181,6 +181,14 @@ a:hover {
 	padding-top: 200px;
 	font-family: 'Roboto', sans-serif;
 	text-shadow: 2px 2px 5px black;
+	z-index: 2;
+}
+
+.nav-tabs {
+  white-space: nowrap;
+  overflow-x: auto;
+  overflow-y: hidden;
+  min-height: 46px;
 }
 
 .btn-primary {
@@ -274,6 +282,11 @@ a:hover {
 
 .noUi-connect {
 	background: #0069C0;
+}
+
+
+div#users-tab {
+    padding: 0;
 }
 
 /*----- User Profile -----*/
