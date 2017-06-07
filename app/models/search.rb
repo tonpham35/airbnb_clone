@@ -1,9 +1,20 @@
 class Search < ApplicationRecord
 
 	def search_listings
-		listings = Listing.all
 
-		listings = listings.where(["name LIKE?", "#{keyword}"]) if self.keyword.present?
+		listings = Listing.all
+		results = []
+	
+		
+		if self.keyword.present? 
+			self.keyword = self.keyword.downcase
+			results << listings.where(["lower(name) LIKE?", "%#{keyword}%"]) 
+			results << listings.where(["lower(property_type) LIKE?", "%#{keyword}%"])
+			results << listings.where(["lower(state) LIKE?", "%#{keyword}%"])
+			results << listings.where(["lower(country) LIKE?", "%#{keyword}%"])
+			listings = results[0]
+		end
+		
 		listings = listings.where(["property_type LIKE?",property_type]) if self.property_type.present? 
 		listings = listings.where(["state LIKE?",state]) if self.state.present? 
 		listings = listings.where(["country LIKE?",country]) if self.country.present?
@@ -15,6 +26,10 @@ class Search < ApplicationRecord
 		listings = listings.where(pets: true) if self.pets == true
 		listings = listings.where(instant_book: true) if self.instant_book == true
 
+
+
+# Listing.where(["lower(name || property_type || state || country) LIKE?", "%#{keyword}%"]) if self.keyword.present?
 		return listings
 	end
 end
+	

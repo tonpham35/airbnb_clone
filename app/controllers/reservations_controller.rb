@@ -38,6 +38,9 @@ class ReservationsController < ApplicationController
 
     respond_to do |format|
       if @reservation.save
+        #ReservationMailer.booking_email(@reservation.user, @listing.user, @reservation.id).deliver_now
+        # ReservationJob.perform_now(@reservation.id ,@listing.id)
+        ReservationMailer.booking_email(@reservation.user, @listing.user, @reservation.id).deliver_later
         format.html { redirect_to @reservation, notice: 'Reservation was successfully created.' }
         format.json { render :show, status: :created, location: @reservation }
       else

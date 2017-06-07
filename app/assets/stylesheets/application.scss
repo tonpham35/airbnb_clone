@@ -69,14 +69,15 @@ a:hover {
 }
 
 .pmd-btn-flat.btn-primary {
-    color: black;
-    background-color: transparent;
+    color: #f5f5f5;
+    background-color: #337ab7;
 }
 
 .pmd-btn-flat.btn-primary:hover {
-    color: white;
-    background-color: transparent;
+    color: black;
+    background-color: #2196f3;
 }
+
 .pmd-navbar.navbar .btn.pmd-btn-fab {
     margin: 12px 0;
     padding: 0;
@@ -120,6 +121,46 @@ a:hover {
 	top: -15px;
 	left: 0px;
 	height: 465px;
+	width: 100%;
+	background-size: cover;
+}
+
+#home-banner-kl {
+	background-image: url(/assets/petronas.jpg);
+	position: absolute;
+	top: 25px;
+	left: 0px;
+	height: 465px;
+	width: 100%;
+	background-size: cover;
+}
+
+#home-banner-penang {
+	background-image: url(/assets/penang-pano.jpg);
+	position: absolute;
+	top: 0px;
+	left: 0px;
+	height: 465px;
+	width: 100%;
+	background-size: cover;
+}
+
+#home-banner-sabah {
+	background-image: url(/assets/mount_kinabalu_Fotor.jpg);
+	position: absolute;
+	top: 20px;
+	left: 0px;
+	height: 404px;
+	width: 100%;
+	background-size: cover;
+}
+
+#home-banner-johor {
+	background-image: url(/assets/johor_Fotor.jpg);
+	position: absolute;
+	top: 20px;
+	left: 0px;
+	height: 560px;
 	width: 100%;
 	background-size: cover;
 }

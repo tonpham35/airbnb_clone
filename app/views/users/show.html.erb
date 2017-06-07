@@ -1,156 +1,172 @@
-<h1 class='text-center' style="padding-top: 150px">Users#index</h1>
-<p>Find me in app/views/users/index.html.erb</p>
-<% if @users.profilepic.url != nil %>
-<%= image_tag @users.profilepic.card.url %>
-<span><%= @users.first_name %> <%= @users.last_name %></span>
-<span><%= @users.email %></span>
-<% end %>
+<div class="row" style="margin: -10px 0px 0px -38px; width: 106%;">   
+  <div id="profile-info" class="col-md-4 col-sm-12">
+    <h1 style="padding-left: 20px;" class='text-center'><%= @users.first_name %> <%= @users.last_name %>'s Profile</h1> 
+    <div class='row'> 
+      <div class='col-sm-12' style="height: 300px; width: 300px;">
+        <% if @users.profilepic.url != nil %>
+          <%= image_tag @users.profilepic.card.url %><br>
+        <% else %>
+          <img class='img-responsive'src="/assets/blank_profile_pic_Fotor1-8ae3781728d433190b7f05fa4e46be03537ec2db3e95cfeaffdcc70128937d2c.png">
+        <% end %>
+      </div>
+    </div>
+    <span>Full Name: <%= @users.first_name %> <%= @users.last_name %></span><br>
+    <span>Email Address: <%= @users.email %></span><br>
+  </div>
 
-<% if @users.listings.length > 0 %>
-<% @users.listings.each do |listing| %>
-<h1><%= listing.address1 %></h1>
-<table border="1" class='text-center'>
-  <thead>
-    <tr>
-      <th style="padding: 10px">Preview Pic</th>
-      <th style="padding: 10px">User</th>
-      <th style="padding: 10px">Address1</th>
-      <th style="padding: 10px">Address2</th>
-      <th style="padding: 10px">Postalcode</th>
-      <th style="padding: 10px">State</th>
-      <th style="padding: 10px">Country</th>
-      <th style="padding: 10px">No bed</th>
-      <th style="padding: 10px">No room</th>
-      <th style="padding: 10px">Max guest</th>
-      <th style="padding: 10px">Price per day</th>
-      <th style="padding: 10px">Currency</th>
-      <th style="padding: 10px">Content</th>
-      <th style="padding: 10px">Smoker</th>
-      <th style="padding: 10px">Pets</th>
-      <th style="padding: 10px">Instant book</th>
-      <th style="padding: 10px">Property type</th>
-      <th style="padding: 10px">Name</th>
-      <th colspan="3">Updates</th>
-    </tr>
-  </thead>
-  <tbody>
-      <tr>
-        <td style="padding: 10px"><% if listing.photos.length > 0 %>
-          <%=image_tag listing.photos[0].thumb.url, class:"listing-preview"%>
+  <div class="col-md-8 col-sm-12" style="padding: 0;">
+  <!--Fixed tab example -->
+    <div class="pmd-card pmd-z-depth" id='users-tab'>
+      <div class="pmd-tabs pmd-tabs-bg">
+        <div class="pmd-tab-active-bar"></div>
+          <ul role="tablist" class="nav nav-tabs">
+            <li class="active" role="presentation"><a data-toggle="tab" role="tab" aria-controls="home" href="#home-fixed">Listings</a></li>
+            <li role="presentation"><a data-toggle="tab" role="tab" aria-controls="messages" href="#work-fixed">Reviews</a></li>
+          </ul>
+        </div>
+        <div class="pmd-card-body pmd-z-depth-0">
+          <div class="tab-content">
+            <div role="tabpanel" class="tab-pane active" id="home-fixed"><!--My Listings Content-->
+            <% if @users.listings != nil %>
+                <div class="row center-block" >
+                  <% @users.listings.each do |listing| %>
+                    <!--Media, Title, Description and Action area -->
+                      <div class="col-lg-6 col-md-6 col-sm-12">
+                        <div class="pmd-card pmd-card-default pmd-z-depth" style="height: 550px;">
+                          <!-- Card header -->
+                            <div class="pmd-card-title">
+                                <div class="media-left">
+                                  <%= link_to listing.user, class:"avatar-list-img" do %><td>
+                                    <% if listing.user.profilepic.thumb.url != nil %>
+                                      <%=image_tag listing.user.profilepic.thumb.url, class:"card-thumb"%>
+                                    <% else %>
+                                      <img class='card-thumb' src="/assets/blank_profile_pic_Fotor1.png">
+                                    <% end %></td>
+                                  <% end %>
+                                </div>
+                                <div class="media-body media-middle">
+                                    <h3 class="pmd-card-title-text">
+                                    <%= link_to root_path do %><%= listing.name %><% end %>
+                                    </h3>
+                                    <span class="pmd-card-subtitle-text"><%= listing.address1 %>, <%= listing.state %></span>
+                                </div>
+                            </div>
+                          
+                            <!-- Card media -->
+                            <div class="pmd-card-media">
+                              <% if listing.photos.length > 0 %>
+                                <%= image_tag listing.photos.first.card.url, class:'img-responsive center-block', id:'card-pic-small' %>
+                              <% else %>
+                                <img width="1184" height="666" class="img-responsive center-block" src="http://propeller.in/assets/images/profile-pic.png">
+                              <% end %>
+                            </div>
+                            
+                            <!-- Card body -->
+                            <div class="pmd-card-body">
+                                <%= listing.content %> <br>
+                                Price: <%= listing.price_per_day %><%= listing.currency %>/day
+                            </div>
+                            
+                            <!-- Card actions -->
+                            <div class="pmd-card-actions" style="position: absolute; bottom: 30px;">
+                                <%= link_to listing do %><button class="btn pmd-btn-flat pmd-ripple-effect btn-primary" type="button">View Listing</button><% end %>
+                                <button data-target="#large-dialog<%=listing.id%>" data-toggle="modal" class="btn pmd-btn-flat pmd-ripple-effect btn-primary" type="button">Quick Look</button>
+                            </div>
+                      </div>
+                </div>
+
+                <!-- Dialog in large size -->
+                <div tabindex="-1" class="modal fade" id="large-dialog<%=listing.id%>" style="display: none;" aria-hidden="true">
+                  <div class="modal-dialog modal-lg">
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <button aria-hidden="true" data-dismiss="modal" class="close" type="button">×</button>
+                        <div class="media-left">
+                          <%= link_to listing.user, class:"avatar-list-img" do %>
+                            <td><% if listing.user.profilepic.thumb.url != nil %>
+                                  <%=image_tag listing.user.profilepic.thumb.url, class:"card-thumb"%>
+                                <% else %>
+                                  <img class='card-thumb' src="/blank_profile_pic_Fotor.png">
+                                <% end %>
+                            </td>
+                          <% end %> 
+                        </div>
+                        <div class="media-body media-middle">
+                          <h3 class="pmd-card-title-text"><%= link_to root_path do %><%= listing.name %><% end %></h3>
+                          <span class="pmd-card-subtitle-text"><%= listing.address1 %>, <%= listing.state %></span><br>
+                          <span class="pmd-card-subtitle-text">Owner: <%= listing.user.first_name %> <%= listing.user.last_name %></span>
+                        </div>
+                      </div>
+                      <div class="pmd-modal-media"> 
+                      <% if listing.photos.count > 1 %>
+                        <div id="myCarousel" class="carousel slide" data-ride="carousel" style="height:500px; width: 100%; margin: auto;">
+                          <!-- Indicators -->
+                          <ol class="carousel-indicators">
+                            <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+                            <% x = listing.photos.length - 1 %>
+                            <% for i in 1..x do %>  
+                            <li data-target="#myCarousel" data-slide-to="<%= i %>"></li>
+                            <% end %>
+                          </ol>
+
+                          <!-- Wrapper for slides -->
+                          <div class="carousel-inner">
+                            <div class="item active">
+                              <%= image_tag listing.photos.first.carousel.url %>
+                            </div>
+
+                          <% for i in 1..x do %>
+                            <div class="item">
+                              <%= image_tag listing.photos[i].carousel.url %>
+                            </div>
+                          <% end %>
+                          
+                          </div>
+
+                          <!-- Left and right controls -->
+                          <a class="left carousel-control" href="#myCarousel" data-slide="prev">
+                            <span class="glyphicon glyphicon-chevron-left"></span>
+                            <span class="sr-only">Previous</span>
+                          </a>
+                          <a class="right carousel-control" href="#myCarousel" data-slide="next">
+                            <span class="glyphicon glyphicon-chevron-right"></span>
+                            <span class="sr-only">Next</span>
+                          </a>
+                        </div>
+
+                      <% else %>
+                        <img width="1184" height="666" class="img-responsive" src="http://propeller.in/assets/images/profile-pic.png"> 
+                      <% end %>
+
+                      </div>
+                      <div class="modal-body"> 
+                        Details:<%= listing.content %><br>
+                        Price: <%= listing.price_per_day %><%= listing.currency %>/day</span> 
+                      </div>
+                      <div class="pmd-modal-action">
+                        <button data-dismiss="modal"  type="button" class="btn btn-sm pmd-btn-fab pmd-btn-flat pmd-ripple-effect btn-primary"> <i class="material-icons pmd-sm">share</i> </button>
+                        <button data-dismiss="modal"  type="button" class="btn btn-sm pmd-btn-fab pmd-btn-flat pmd-ripple-effect btn-primary"> <i class="material-icons pmd-sm">thumb_up</i> </button>
+                        <button data-dismiss="modal"  type="button" class="btn btn-sm pmd-btn-fab pmd-btn-flat pmd-ripple-effect btn-primary"> <i class="material-icons pmd-sm">drafts</i> </button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <% end %>
+              </div>
             <% else %>
-              <span class="glyphicon glyphicon-picture"></span>
-            <% end %></td>
-        <td style="padding: 10px"><%= listing.user.first_name%> <%=listing.user.last_name %></td>
-        <td style="padding: 10px"><%= listing.address1 %></td>
-        <td style="padding: 10px"><%= listing.address2 %></td>
-        <td style="padding: 10px"><%= listing.postalcode %></td>
-        <td style="padding: 10px"><%= listing.state %></td>
-        <td style="padding: 10px"><%= listing.country %></td>
-        <td style="padding: 10px"><%= listing.no_bed %></td>
-        <td style="padding: 10px"><%= listing.no_room %></td>
-        <td style="padding: 10px"><%= listing.max_guest %></td>
-        <td style="padding: 10px"><%= listing.price_per_day %></td>
-        <td style="padding: 10px"><%= listing.currency %></td>
-        <td style="padding: 10px"><%= listing.content %></td>
-        <td style="padding: 10px"><%= listing.smoker %></td>
-        <td style="padding: 10px"><%= listing.pets %></td>
-        <td style="padding: 10px"><%= listing.instant_book %></td>
-        <td style="padding: 10px"><%= listing.property_type %></td>
-        <td style="padding: 10px"><%= listing.name %></td>
-        <td style="padding: 10px"><%= link_to 'Show', listing %></td>
-        <td style="padding: 10px"><%= link_to 'Edit', edit_listing_path(listing) %></td>
-        <td style="padding: 10px"><%= link_to 'Destroy', listing, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    
-  </tbody>
-</table>
+              <h2> You Have No Listings </h2>
+              <span><%= link_to 'Create A New Listing', new_listing_path %><br></span>
+            <% end %>
+            </div><!--My Listings Content end-->
 
-<% if listing.reservations.length > 0 %>
-<h1><%= listing.address1 %>'s Reservations</h1>
-<table border="1" class='text-center'>
-  <thead>
-    <tr>
-      <th style="padding: 10px">Guest Profile Pic</th>
-      <th style="padding: 10px">Main Guest</th>
-      <th style="padding: 10px">Start Date</th>
-      <th style="padding: 10px">End Date</th>
-      <th style="padding: 10px">Number Guest</th>
-      <th style="padding: 10px">Total Price</th>
-      <th style="padding: 10px">Note:</th>
-      <th colspan="2">Updates</th>
-    </tr>
-  </thead>
-  <tbody>
-    <% listing.reservations.each do |reserv| %>
-      <tr>
-        <td style="padding: 10px"><% if listing.user.profilepic != nil %>
-          <%=image_tag listing.user.profilepic.thumb.url, class:"listing-preview"%>
-            <% else %>
-              <span class="glyphicon glyphicon-picture"></span>
-            <% end %></td>
-        <td style="padding: 10px"><%= reserv.user.first_name%> <%= reserv.user.last_name %></td>
-        <td style="padding: 10px"><%= reserv.start_date %></td>
-        <td style="padding: 10px"><%= reserv.end_date %></td>
-        <td style="padding: 10px"><%= reserv.num_guest %></td>
-        <td style="padding: 10px"><%= reserv.currency %><%= reserv.total_price %></td>
-        <td style="padding: 10px"><%= reserv.message %></td>
-        <!-- <td style="padding: 10px"><#%= link_to 'Destroy', reservation_url, method: :delete, data: { confirm: 'Are you sure?' } %></td> -->
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+            <div role="tabpanel" class="tab-pane" id="work-fixed"><!--My Reviews Content-->
+            Reviews: Feature Coming Soon!
+            </div><!--My Reviews Content end-->
+          </div>
+        </div>
+    </div> <!--Fixed tab example end-->
+  </div>
 
-<% end %>
 
-<% end %>
-<% end %>
 
-<% if @users.reservations.length > 0 %>
-<h1>Your Reservations</h1>
-<table border="1" class='text-center'>
-  <thead>
-    <tr>
-      <th style="padding: 10px">Preview Pic</th>
-      <th style="padding: 10px">Owner</th>
-      <th style="padding: 10px">Address1</th>
-      <th style="padding: 10px">Address2</th>
-      <th style="padding: 10px">Postalcode</th>
-      <th style="padding: 10px">State</th>
-      <th style="padding: 10px">Country</th>
-      <th style="padding: 10px">Number bed</th>
-      <th style="padding: 10px">Number room</th>
-      <th style="padding: 10px">Number Guest</th>
-      <th style="padding: 10px">Total Price</th>
-      <th style="padding: 10px">Note:</th>
-      <th colspan="3">Updates</th>
-    </tr>
-  </thead>
-  <tbody>
-    <% @users.reservations.each do |listing| %>
-      <tr>
-        <td style="padding: 10px"><% if listing.listing.photos.length > 0 %>
-          <%=image_tag listing.listing.photos[0].thumb.url, class:"listing-preview"%>
-            <% else %>
-              <span class="glyphicon glyphicon-picture"></span>
-            <% end %></td>
-        <td style="padding: 10px"><%= listing.listing.user.first_name%> <%=listing.listing.user.last_name %></td>
-        <td style="padding: 10px"><%= listing.listing.address1 %></td>
-        <td style="padding: 10px"><%= listing.listing.address2 %></td>
-        <td style="padding: 10px"><%= listing.listing.postalcode %></td>
-        <td style="padding: 10px"><%= listing.listing.state %></td>
-        <td style="padding: 10px"><%= listing.listing.country %></td>
-        <td style="padding: 10px"><%= listing.listing.no_bed %></td>
-        <td style="padding: 10px"><%= listing.listing.no_room %></td>
-        <td style="padding: 10px"><%= listing.num_guest %></td>
-        <td style="padding: 10px"><%= listing.currency %><%= listing.total_price %></td>
-        <td style="padding: 10px"><%= listing.message %></td>
-        <td style="padding: 10px"><%= link_to 'Show', listing %></td>
-        <td style="padding: 10px"><%= link_to 'Edit', edit_listing_path(listing) %></td>
-        <td style="padding: 10px"><%= link_to 'Destroy', listing, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
-
-<% end %>
     

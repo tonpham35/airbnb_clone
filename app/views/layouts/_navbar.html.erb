@@ -54,7 +54,7 @@
 
             <li class="pmd-ripple-effect"><%= link_to listings_path do %><i class="material-icons media-left media-middle">list</i> <span class="media-body" style="font-size: 15px;">Listings</span><% end %></li>
 
-            <li class="pmd-ripple-effect"><%= link_to new_search_path do %><i class="material-icons media-left media-middle">search</i> <span class="media-body" style="font-size: 15px;">Search Listings</span><% end %></li>
+            <li class="pmd-ripple-effect"><a onclick="clickShow('log-in')"><i class="material-icons media-left media-middle">search</i> <span class="media-body" style="font-size: 15px;">Search Listings</span></a></li>
 
             <% if signed_in? -%>
               <li class="pmd-ripple-effect">

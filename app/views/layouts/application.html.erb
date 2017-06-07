@@ -166,6 +166,28 @@
 	    						</label>
 							</div>
 						</div>
+						<div class='col-md-2 col-sm-4'>
+					        <%= form.label :start_date %>
+					        <div class="form-group">
+					            <div class='input-group date' id='datetimepicker1'>
+					            	<%= form.text_field :start_date, class: 'form-control' %>
+					                <span class="input-group-addon">
+					                	<span class="glyphicon glyphicon-calendar"></span>
+					                </span>
+					            </div>
+					        </div>
+					    </div>
+					    <div class='col-md-2 col-sm-4'>
+					        <%= form.label :end_date %>
+				        	<div class="form-group">
+				        		<div class='input-group date' id='datetimepicker'>
+				            		<%= form.text_field :end_date, class: 'form-control' %>
+				            		<span class="input-group-addon">
+				                		<span class="glyphicon glyphicon-calendar"></span>
+				            		</span>
+				            	</div>
+				        	</div>
+					    </div>
 						<div class="col-md-1 col-sm-1">
 							<%= form.submit do %><button class="btn btn-lg pmd-btn-raised pmd-ripple-effect btn-primary" type="button" style="background-color: #0069C0; position: absolute; top: 20px;">Submit</button><% end %>
 						</div>

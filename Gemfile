@@ -46,6 +46,9 @@ gem 'fog'
 gem 'momentjs-rails'
 gem 'bootstrap3-datetimepicker-rails'
 gem 'braintree'
+gem 'letter_opener', :group => :development
+gem 'sidekiq'
+
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development

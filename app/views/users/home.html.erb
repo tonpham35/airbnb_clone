@@ -16,19 +16,22 @@
           <!-- Card header -->
             <div class="pmd-card-title">
                 <div class="media-left">
-                  <%= link_to listing.user, class:"avatar-list-img" do %><td>
-                    <% if listing.user.profilepic.thumb.url != nil %>
-                      <%=image_tag listing.user.profilepic.thumb.url, class:"card-thumb"%>
-                    <% else %>
-                      <img class='card-thumb' src="/assets/blank_profile_pic_Fotor1.png">
-                    <% end %></td>
+                  <%= link_to listing.user, class:"avatar-list-img" do %>
+                    <td>  
+                      <% if listing.user.profilepic.thumb.url != nil %>
+                        <%=image_tag listing.user.profilepic.thumb.url, class:"card-thumb"%>
+                      <% else %>
+                        <img class='card-thumb' src="/assets/blank_profile_pic_Fotor1.png">
+                      <% end %>
+                    </td>
                   <% end %>
                 </div>
                 <div class="media-body media-middle">
                     <h3 class="pmd-card-title-text">
                     <%= link_to listing do %><%= listing.name %><% end %>
                     </h3>
-                    <span class="pmd-card-subtitle-text"><%= listing.address1 %>, <%= listing.state %></span>
+                    <span class="pmd-card-subtitle-text"><%= listing.address1 %>, <%= listing.state %></span><br>
+                    <%= link_to listing.user do %><span class="pmd-card-subtitle-text">Host: <%= listing.user.first_name %>, <%= listing.user.last_name %></span><% end %>
                 </div>
             </div>
           

@@ -25,7 +25,7 @@
             <li role="presentation"><a data-toggle="tab" role="tab" aria-controls="messages" href="#work-fixed">My Reviews</a></li>
           </ul>
         </div>
-        <div class="pmd-card-body pmd-z-depth-0" style="background-color: lightgrey;">
+        <div class="pmd-card-body pmd-z-depth-0">
           <div class="tab-content">
             <div role="tabpanel" class="tab-pane active" id="home-fixed"><!--My Listings Content-->
             <% if @users.listings != nil %>
@@ -168,18 +168,19 @@
                 </div>
               <% else %>
                   <% @users.listings.each do |listing| %>
-                    <% if @users.listings != nil %>
+                    <% if listing.reservations != nil %>
                       <% listing.reservations.each do |reservation| %>
                         <!--Title, Media, and Action area -->
-                        <div class="col-lg-12 col-md-12 col-sm-12" style="width: 96%;">
+                        <div class="col-md-6 col-sm-12" style="width: 96%;">
                           <div class="pmd-card pmd-card-media-inline pmd-card-default pmd-z-depth">
                             <!-- Card media-->
                               <div class="pmd-card-media">
                                 <!-- Card media heading -->
                                   <div class="media-body">
-                                      <h2 class="pmd-card-title-text"><%= reservation.listing.name %></h2>
-                                      <span class="pmd-card-subtitle-text">Guest: <%= reservation.user.first_name %> <%= reservation.user.last_name %></span><br>
+                                      <h1 class="pmd-card-title-text"><%= reservation.listing.name %></h1>
+                                      <span class="pmd-card-subtitle-text" style="font-size: 20px;">Guest: <%= reservation.user.first_name %> <%= reservation.user.last_name %></span><br>
                                       <span class="pmd-card-subtitle-text">Check-in: <%= reservation.start_date %> - Check-out: <%= reservation.end_date %></span><br>
+                                      <span class="pmd-card-subtitle-text">Total Price: <%= reservation.total_price %><%= reservation.currency %></span><br>
                                       <span class="pmd-card-subtitle-text">Message: <%= reservation.message %></span>
                                   </div>
                                   
@@ -187,7 +188,7 @@
                                   <div class="media-right media-middle">
                                       <a>
                                         <% if reservation.user.profilepic != nil %>
-                                          <%= image_tag reservation.user.profilepic.card.url   %>
+                                          <%= image_tag reservation.user.profilepic.card.url class:"img-responsive center-block"%>
                                         <% else %>
                                           <img width="1184" height="666" class="img-responsive center-block" src="http://propeller.in/assets/images/profile-pic.png">
                                         <% end %>
@@ -197,71 +198,65 @@
                               
                               <!-- Card action -->
                               <div class="pmd-card-actions">
-                                  <button class="btn pmd-btn-flat pmd-ripple-effect btn-primary" type="button">Primary</button>
-                                  <button type="button" class="btn pmd-btn-flat pmd-ripple-effect btn-default">Action</button>
+                                  <%= link_to user_path(reservation.user.id) do %><button type="button" class="btn pmd-btn-flat pmd-ripple-effect btn-default">Guest Profile</button><% end %>
                               </div>
                           </div>
                         </div>
                       <% end %>
+                    <% else %>
+                      <div>
+                        You have no reservations at <%= reservation.listings.name %>
+                      </div>
                     <% end %>
                   <% end %>
               <% end %>
             </div><!--My Reservations Content end-->
 
             <div role="tabpanel" class="tab-pane" id="profile-fixed"><!--My Trips Content-->
-              <% if @users.reservations.length > 0 %>
+              <% if @users.reservations == nil %>
                 <div>
-                  <div class='text-center'>
-                    <button type="button" class="btn btn-primary btn-lg" id="searchbutton" onclick="clickShow('log-in')">Search for Your Next Connection</button>
-                  </div>
+                  You have no Reservations
                 </div>
               <% else %>
-                <% @users.reservations.each do |reserv| %>
-                  <% if @users.reservations.length > 0 %>
-                    <% reserv.listings.each do |list| %>
-                      <!--Title, Media, and Action area -->
-                      <div class="col-lg-12 col-md-12 col-sm-12" style="width: 96%;">
-                        <div class="pmd-card pmd-card-media-inline pmd-card-default pmd-z-depth">
-                          <!-- Card media-->
-                            <div class="pmd-card-media">
-                              <!-- Card media heading -->
-                                <div class="media-body">
-                                  <h2 class="pmd-card-title-text"><%= list.name %></h2>
-                                  <span class="pmd-card-subtitle-text">Host: <%= list.user.first_name %> <%= reservation.user.last_name %></span><br>
-                                  <span class="pmd-card-subtitle-text">Check-in: <%= reserv.start_date %> - Check-out: <%= reserv.end_date %></span><br>
-                                  <span class="pmd-card-subtitle-text">Message: <%= reserv.message %></span>
-                                </div>
-                                  
-                              <!-- Card media image -->
-                                <div class="media-right media-middle">
-                                  <a>
-                                    <% if list.user.profilepic != nil %>
-                                      <%= image_tag list.user.profilepic.card.url   %>
-                                    <% else %>
-                                      <img width="1184" height="666" class="img-responsive center-block" src="http://propeller.in/assets/images/profile-pic.png">
-                                    <% end %>
-                                  </a>
-                                </div>
-                              </div>
-                              
-                              <!-- Card action -->
-                              <div class="pmd-card-actions">
-                                  <button class="btn pmd-btn-flat pmd-ripple-effect btn-primary" type="button">Primary</button>
-                                  <button type="button" class="btn pmd-btn-flat pmd-ripple-effect btn-default">Action</button>
+                <% @users.reservations.each do |reservation| %>
+                  <!--Title, Media, and Action area -->
+                  <div class="col-md-6 col-sm-12" style="width: 96%;">`
+                    <div class="pmd-card pmd-card-media-inline pmd-card-default pmd-z-depth">
+                      <!-- Card media-->
+                        <div class="pmd-card-media">
+                          <!-- Card media heading -->
+                            <div class="media-body">
+                                <h1 class="pmd-card-title-text"><%= reservation.listing.name %></h1>
+                                <span class="pmd-card-subtitle-text" style="font-size: 20px;">Host: <%= reservation.listing.user.first_name %> <%= reservation.listing.user.last_name %></span><br>
+                                <span class="pmd-card-subtitle-text">Check-in: <%= reservation.start_date %> - Check-out: <%= reservation.end_date %></span><br>
+                                <span class="pmd-card-subtitle-text">Total Price: <%= reservation.total_price %><%= reservation.currency %></span><br>
+                                <span class="pmd-card-subtitle-text">Message: <%= reservation.message %></span>
+                            </div>
+                            
+                            <!-- Card media image -->
+                            <div class="media-right media-middle">
+                                <a>
+                                  <% if reservation.listing.photos != nil %>
+                                    <%= image_tag reservation.listing.photos[0].card.url class:"img-responsive center-block"%>
+                                  <% else %>
+                                    <img width="1184" height="666" class="img-responsive center-block" src="http://propeller.in/assets/images/profile-pic.png">
+                                  <% end %>
+                                </a>
                             </div>
                         </div>
-                      </div>
-                    <% end %>
-                  <% end %>
+                        
+                        <!-- Card action -->
+                        <div class="pmd-card-actions">
+                            <button class="btn pmd-btn-flat pmd-ripple-effect btn-primary" type="button">Primary</button>
+                            <button type="button" class="btn pmd-btn-flat pmd-ripple-effect btn-default">Action</button>
+                        </div>
+                    </div>
+                  </div>
                 <% end %>
               <% end %>
-
-
-
             </div><!--My Trips Content end-->
             <div role="tabpanel" class="tab-pane" id="work-fixed"><!--My Reviews Content-->
-            Reviews
-            To navigate between scrollable tabs, touch the tab or swipe the content area left or right. To scroll the tabs without navigating, swipe the tabs left or right.
+            Reviews: Feature Coming Soon!
             </div><!--My Reviews Content end-->
           </div>
         </div>

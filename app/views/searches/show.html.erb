@@ -1,7 +1,38 @@
-<p id="notice" style="padding-top: 120px"><%= notice %></p>
+<p id="notice" ><%= notice %></p>
 
+<% if @search.state == 'Kuala Lumpur' %>
+  <div id='home-banner-kl'>
+    <h1 id='home-banner-text' style="color: ghostwhite;">Search Results for Kuala Lumpur</h1>
+    <div class='text-center'><button type="button" class="btn btn-primary btn-lg" id="searchbutton" onclick="clickShow('log-in')">Search for Your Next Connection</button></div>
+  </div>
+  <div class="row center-block" style="padding-top: 440px;">
+<% elsif @search.state == 'Penang' %>
+  <div id='home-banner-penang'>
+    <h1 id='home-banner-text'>Search Results for Penang</h1>
+    <div class='text-center'><button type="button" class="btn btn-primary btn-lg" id="searchbutton" onclick="clickShow('log-in')">Search for Your Next Connection</button></div>
+  </div>
+    <div class="row center-block" style="padding-top: 400px;">
+  </div>
+<% elsif @search.state == 'Johor' %>
+  <div id='home-banner-johor'>
+    <h1 id='home-banner-text'>Search Results for Johor Bahru</h1>
+    <div class='text-center'><button type="button" class="btn btn-primary btn-lg" id="searchbutton" onclick="clickShow('log-in')">Search for Your Next Connection</button></div>
+  </div>
+    <div class="row center-block" style="padding-top: 520px;">
+<% elsif @search.state == 'Sabah' %>
+  <div id='home-banner-sabah'>
+    <h1 id='home-banner-text'>Search Results for Sabah</h1>
+    <div class='text-center'><button type="button" class="btn btn-primary btn-lg" id="searchbutton" onclick="clickShow('log-in')">Search for Your Next Connection</button></div>
+  </div>
+    <div class="row center-block" style="padding-top: 360px;">
+<% else %>
+  <div id='home-banner'>
+  <h1 id='home-banner-text'>Search Results</h1>
+  <div class='text-center'><button type="button" class="btn btn-primary btn-lg" id="searchbutton" onclick="clickShow('log-in')">Search for Your Next Connection</button></div>
+  </div>
+  <div class="row center-block" style="padding-top: 400px;">
+<% end %>
 
-<div class="row center-block" >
   <% @search.search_listings.each do |listing| %>
     <!--Media, Title, Description and Action area -->
       <div class="col-lg-3 col-md-6 col-sm-12">
