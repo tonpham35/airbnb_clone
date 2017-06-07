@@ -1,9 +1,7 @@
-<%= stylesheet_link_tag    "listings", :media => "all" %>
-
-<p id="notice"><%= notice %></p>
+<p id="notice" style="padding-top: 120px;"><%= notice %></p>
 
 <% if @listing.photos.length > 0 %>
-<div id="myCarousel" class="carousel slide" data-ride="carousel" style="height:400px;">
+<div id="myCarousel" class="carousel slide" data-ride="carousel" style="height:500px; width: 100%; margin: auto;">
   <!-- Indicators -->
   <ol class="carousel-indicators">
     <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
@@ -16,12 +14,12 @@
   <!-- Wrapper for slides -->
   <div class="carousel-inner">
     <div class="item active">
-      <%= image_tag @listing.photos.first %>
+      <%= image_tag @listing.photos.first.carousel.url %>
     </div>
 
   <% for i in 1..x do %>
     <div class="item">
-      <%= image_tag @listing.photos[i] %>
+      <%= image_tag @listing.photos[i].carousel.url %>
     </div>
   <% end %>
   
@@ -40,9 +38,12 @@
 
 <% end %>
 
+<span><%= @listing.name %></span>
+
+
 <p>
-  <strong>User:</strong>
-  <%= @listing.user %>
+  <strong>Listing By:</strong>
+  <%= @listing.user.first_name %> <%= @listing.user.last_name %>
 </p>
 
 <p>
@@ -125,5 +126,72 @@
   <%= @listing.name %>
 </p>
 
-<%= link_to 'Edit', edit_listing_path(@listing) %> |
+<% if current_user != nil %>
+<h2> Reserve this property </h2>
+
+<%= form_with(model: @reservation, local: true) do |form| %>
+  <% if @reservation.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@reservation.errors.count, "error") %> prohibited this reservation from being saved:</h2>
+
+      <ul>
+      <% @reservation.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+ 
+  <div class="field">
+    <%= form.hidden_field :user_id, value: @user.id %>
+    <%= form.hidden_field :listing_id, value: @listing.id %>
+  </div>
+
+    <div class="row">
+      <div class='col-sm-3'>
+        <%= form.label :start_date %>
+          <div class="form-group">
+            <div class='input-group date' id='datetimepicker1'>
+              <%= form.text_field :start_date, class: 'form-control' %>
+                <span class="input-group-addon">
+                  <span class="glyphicon glyphicon-calendar"></span>
+                </span>
+            </div>
+          </div>
+      </div>
+
+      <div class='col-sm-3'>
+        <%= form.label :end_date %>
+          <div class="form-group">
+            <div class='input-group date' id='datetimepicker'>
+              <%= form.text_field :end_date, class: 'form-control' %>
+                <span class="input-group-addon">
+                  <span class="glyphicon glyphicon-calendar"></span>
+                </span>
+            </div>
+          </div>
+      </div>
+    </div>
+
+  <div class="field">
+    <%= form.label :Number_of_Guest %>
+    <%= form.select :num_guest, (((1..@listing.max_guest).to_a).map!{|i| i.to_s }), :prompt => 'Select One' %>
+  </div>
+
+
+
+  <div class="field">
+    <%= form.label :message %>
+    <%= form.text_field :message, id: :reservation_message %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>
+
+<% else %>
+<h2> Sign In to Reserve </h2>
+<% end %>
+
 <%= link_to 'Back', listings_path %>

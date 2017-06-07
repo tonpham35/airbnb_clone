@@ -1,5 +1,9 @@
 Rails.application.routes.draw do
 
+  get 'braintree/new'
+  post 'braintree/checkout'
+
+  resources :searches
   resources :reservations
   get "/auth/:provider/callback" => "sessions#create_from_omniauth"
   get "/sign_in" => "clearance/sessions#new", as: "sign_in"
@@ -14,11 +18,14 @@ Rails.application.routes.draw do
       only: [:create, :edit, :update]
   end
 
-  resources :users, only: [:edit, :update]
+  resources :users, only: [:edit, :update, :index, :show, :destroy]
+  delete "/users/:id(.:format)" => "users#destroy", as: "delete_user"
 
   resources :listings
 
-  root 'users#index'
+  get 'users/' => 'users#index', :as => :users_index
+
+  root 'users#home'
 
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html

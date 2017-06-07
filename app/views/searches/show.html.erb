@@ -1,0 +1,162 @@
+<p id="notice" ><%= notice %></p>
+
+<% if @search.state == 'Kuala Lumpur' %>
+  <div id='home-banner-kl'>
+    <h1 id='home-banner-text' style="color: ghostwhite;">Search Results for Kuala Lumpur</h1>
+    <div class='text-center'><button type="button" class="btn btn-primary btn-lg" id="searchbutton" onclick="clickShow('log-in')">Search for Your Next Connection</button></div>
+  </div>
+  <div class="row center-block" style="padding-top: 440px;">
+<% elsif @search.state == 'Penang' %>
+  <div id='home-banner-penang'>
+    <h1 id='home-banner-text'>Search Results for Penang</h1>
+    <div class='text-center'><button type="button" class="btn btn-primary btn-lg" id="searchbutton" onclick="clickShow('log-in')">Search for Your Next Connection</button></div>
+  </div>
+    <div class="row center-block" style="padding-top: 400px;">
+  </div>
+<% elsif @search.state == 'Johor' %>
+  <div id='home-banner-johor'>
+    <h1 id='home-banner-text'>Search Results for Johor Bahru</h1>
+    <div class='text-center'><button type="button" class="btn btn-primary btn-lg" id="searchbutton" onclick="clickShow('log-in')">Search for Your Next Connection</button></div>
+  </div>
+    <div class="row center-block" style="padding-top: 520px;">
+<% elsif @search.state == 'Sabah' %>
+  <div id='home-banner-sabah'>
+    <h1 id='home-banner-text'>Search Results for Sabah</h1>
+    <div class='text-center'><button type="button" class="btn btn-primary btn-lg" id="searchbutton" onclick="clickShow('log-in')">Search for Your Next Connection</button></div>
+  </div>
+    <div class="row center-block" style="padding-top: 360px;">
+<% else %>
+  <div id='home-banner'>
+  <h1 id='home-banner-text'>Search Results</h1>
+  <div class='text-center'><button type="button" class="btn btn-primary btn-lg" id="searchbutton" onclick="clickShow('log-in')">Search for Your Next Connection</button></div>
+  </div>
+  <div class="row center-block" style="padding-top: 400px;">
+<% end %>
+
+  <% @search.search_listings.each do |listing| %>
+    <!--Media, Title, Description and Action area -->
+      <div class="col-lg-3 col-md-6 col-sm-12">
+        <div class="pmd-card pmd-card-default pmd-z-depth" style="height: 550px;">
+          <!-- Card header -->
+            <div class="pmd-card-title">
+                <div class="media-left">
+                  <%= link_to listing.user, class:"avatar-list-img" do %><td>
+                    <% if listing.user.profilepic.thumb.url != nil %>
+                      <%=image_tag listing.user.profilepic.thumb.url, class:"card-thumb"%>
+                    <% else %>
+                      <img class='card-thumb' src="/assets/blank_profile_pic_Fotor1.png">
+                    <% end %></td>
+                  <% end %>
+                </div>
+                <div class="media-body media-middle">
+                    <h3 class="pmd-card-title-text">
+                    <%= link_to root_path do %><%= listing.name %><% end %>
+                    </h3>
+                    <span class="pmd-card-subtitle-text"><%= listing.address1 %>, <%= listing.state %></span>
+                </div>
+            </div>
+          
+            <!-- Card media -->
+            <div class="pmd-card-media">
+              <% if listing.photos.length > 0 %>
+                <%= image_tag listing.photos.first.card.url, class:'img-responsive center-block', id:'card-pic-small' %>
+              <% else %>
+                <img width="1184" height="666" class="img-responsive center-block" src="http://propeller.in/assets/images/profile-pic.png">
+              <% end %>
+            </div>
+            
+            <!-- Card body -->
+            <div class="pmd-card-body">
+                <%= listing.content %> <br>
+                Price: <%= listing.price_per_day %><%= listing.currency %>/day
+            </div>
+            
+            <!-- Card actions -->
+            <div class="pmd-card-actions" style="position: absolute; bottom: 30px;">
+                <%= link_to listing do %><button class="btn pmd-btn-flat pmd-ripple-effect btn-primary" type="button">View Listing</button><% end %>
+                <button data-target="#large-dialog<%=listing.id%>" data-toggle="modal" class="btn pmd-btn-flat pmd-ripple-effect btn-primary" type="button">Quick Look</button>
+            </div>
+        </div>
+      </div>
+
+<!-- Dialog in large size -->
+<div tabindex="-1" class="modal fade" id="large-dialog<%=listing.id%>" style="display: none;" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button aria-hidden="true" data-dismiss="modal" class="close" type="button">×</button>
+        <div class="media-left">
+          <%= link_to listing.user, class:"avatar-list-img" do %>
+            <td><% if listing.user.profilepic.thumb.url != nil %>
+                  <%=image_tag listing.user.profilepic.thumb.url, class:"card-thumb"%>
+                <% else %>
+                  <img class='card-thumb' src="/blank_profile_pic_Fotor.png">
+                <% end %>
+            </td>
+          <% end %> 
+        </div>
+        <div class="media-body media-middle">
+          <h3 class="pmd-card-title-text"><%= link_to root_path do %><%= listing.name %><% end %></h3>
+          <span class="pmd-card-subtitle-text"><%= listing.address1 %>, <%= listing.state %></span><br>
+          <span class="pmd-card-subtitle-text">Owner: <%= listing.user.first_name %> <%= listing.user.last_name %></span></div>
+      </div>
+      <div class="pmd-modal-media"> 
+      <% if listing.photos.count > 1 %>
+        <div id="myCarousel" class="carousel slide" data-ride="carousel" style="height:500px; width: 100%; margin: auto;">
+          <!-- Indicators -->
+          <ol class="carousel-indicators">
+            <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+            <% x = listing.photos.length - 1 %>
+            <% for i in 1..x do %>  
+            <li data-target="#myCarousel" data-slide-to="<%= i %>"></li>
+            <% end %>
+          </ol>
+
+          <!-- Wrapper for slides -->
+          <div class="carousel-inner">
+            <div class="item active">
+              <%= image_tag listing.photos.first.carousel.url %>
+            </div>
+
+          <% for i in 1..x do %>
+            <div class="item">
+              <%= image_tag listing.photos[i].carousel.url %>
+            </div>
+          <% end %>
+          
+          </div>
+
+          <!-- Left and right controls -->
+          <a class="left carousel-control" href="#myCarousel" data-slide="prev">
+            <span class="glyphicon glyphicon-chevron-left"></span>
+            <span class="sr-only">Previous</span>
+          </a>
+          <a class="right carousel-control" href="#myCarousel" data-slide="next">
+            <span class="glyphicon glyphicon-chevron-right"></span>
+            <span class="sr-only">Next</span>
+          </a>
+        </div>
+
+      <% else %>
+        <img width="1184" height="666" class="img-responsive" src="http://propeller.in/assets/images/profile-pic.png"> 
+      <% end %>
+
+      </div>
+      <div class="modal-body"> 
+        Details:<%= listing.content %><br>
+        Price: <%= listing.price_per_day %><%= listing.currency %>/day</span> </div>
+      <div class="pmd-modal-action">
+        <button data-dismiss="modal"  type="button" class="btn btn-sm pmd-btn-fab pmd-btn-flat pmd-ripple-effect btn-primary"> <i class="material-icons pmd-sm">share</i> </button>
+        <button data-dismiss="modal"  type="button" class="btn btn-sm pmd-btn-fab pmd-btn-flat pmd-ripple-effect btn-primary"> <i class="material-icons pmd-sm">thumb_up</i> </button>
+        <button data-dismiss="modal"  type="button" class="btn btn-sm pmd-btn-fab pmd-btn-flat pmd-ripple-effect btn-primary"> <i class="material-icons pmd-sm">drafts</i> </button>
+      </div>
+    </div>
+  </div>
+</div>
+<% end %>
+</div>
+<br>
+
+
+<%= link_to 'Edit Search', edit_search_path(@search) %> |
+<%= link_to 'Back', root_path %>

@@ -6,5 +6,5 @@ class Listing < ApplicationRecord
 
 	validates :address1, :country, :price_per_day, :currency,  presence: true
 
-	paginates_per 15
+	paginates_per 12
 end

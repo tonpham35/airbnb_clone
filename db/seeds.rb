@@ -27,7 +27,7 @@ ActiveRecord::Base.transaction do
   40.times do 
     listing['address1'] = Faker::Address.street_address
     listing['postalcode'] = Faker::Address.zip_code
-    listing['state'] = Faker::Address.state
+    listing['state'] = ["Johor", "Kuala Lumpur", "Penang", "Sabah"].sample
     listing['country'] = 'Malaysia'
     listing['no_bed'] = rand(1..10)
     listing['no_room'] = rand(0..5)

@@ -1,0 +1,76 @@
+<%= stylesheet_link_tag    "application", :media => "all" %>
+
+<!-- Basic fixed sidebar -->
+
+<!-- Nav menu -->
+<nav class="navbar navbar-inverse pmd-navbar navbar-fixed-top pmd-z-depth">
+  <div class="container-fluid"> 
+      <!-- Sidebar Toggle Button-->
+      <!-- Brand and toggle get grouped for better mobile display -->
+      <div class="navbar-header">
+          <a class="btn btn-sm pmd-btn-fab pmd-btn-flat pmd-ripple-effect btn-primary pull-left margin-r8 pmd-sidebar-toggle"><i class="material-icons">menu</i></a>
+
+          <%= link_to root_path do %><img id='nav-bar-logo' src="/assets/connections-dark.png"><% end %>
+
+          <%= link_to root_path do %><span class="navbar-brand" style="color: black;">Connections</span> <% end %> 
+
+      </div>
+      
+      <!-- Navbar Right icon -->    
+      <div class="pmd-navbar-right-icon pull-right"> 
+          <a class="btn btn-sm pmd-btn-fab pmd-btn-flat pmd-ripple-effect btn-primary" onclick="clickShow('log-in')"><i class="material-icons pmd-sm">search</i></a>
+      </div> 
+  </div>
+</nav>
+    
+<!-- Sidebar -->
+<section id="pmd-main">
+    <!-- Left sidebar -->
+    <aside class="pmd-sidebar sidebar-custom sidebar-default pmd-sidebar-left-fixed pmd-sidebar-left pmd-z-depth sidebar-hide-custom" role="navigation">
+        <ul class="nav pmd-sidebar-nav">
+            <!-- My Account -->
+            <li class="pmd-user-info">
+                <%= link_to users_index_path do %>
+                    <div class="media-left">
+                      <% if signed_in? -%>
+                        <% if current_user.profilepic.thumb.url != nil %>
+                          <%=image_tag current_user.profilepic.thumb.url, class:"card-thumb"%>
+                        <% else -%> 
+                          <img width="40" height="40" alt="avatar" src="/assets/blank_profile_pic_Fotor1.png">
+                        <% end -%>
+                      <% else -%> 
+                        <img width="40" height="40" alt="avatar" src="/assets/blank_profile_pic_Fotor1.png">
+                      <% end -%>
+                    </div>
+                    <div class="media-body media-middle">
+                      <% if signed_in? -%>
+                        My Account: <%= current_user.first_name.capitalize %> <%= current_user.last_name.capitalize %>
+                        <% else -%> 
+                          Guest
+                        <% end -%>
+                    </div>
+                <% end %>
+            </li>
+
+            <li class="pmd-ripple-effect"><%= link_to listings_path do %><i class="material-icons media-left media-middle">list</i> <span class="media-body" style="font-size: 15px;">Listings</span><% end %></li>
+
+            <li class="pmd-ripple-effect"><a onclick="clickShow('log-in')"><i class="material-icons media-left media-middle">search</i> <span class="media-body" style="font-size: 15px;">Search Listings</span></a></li>
+
+            <% if signed_in? -%>
+              <li class="pmd-ripple-effect">
+                <%= link_to sign_out_path(@users), method: :delete do %><i class="material-icons media-left media-middle">exit_to_app</i> <span class="media-body" style="font-size: 15px;">Logout</span><% end %>
+              </li>
+            <% else %>
+              <li class="pmd-ripple-effect">
+                <a data-target="#sign-in-form-dialog" data-toggle="modal"><i class="material-icons media-left media-middle">exit_to_app</i> <span class="media-body" style="font-size: 15px;">Login</span></a>
+              </li>
+              <li class="pmd-ripple-effect">
+                <%= link_to sign_up_path do %><i class="material-icons media-left media-middle">add</i> <span class="media-body" style="font-size: 15px;">Sign Up</span><% end %>
+              </li>
+            <% end %>
+        </ul>
+    </aside>
+</section>
+
+
+

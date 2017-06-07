@@ -1,22 +1,27 @@
 class ListingsController < ApplicationController
   before_action :set_listing, only: [:show, :edit, :update, :destroy]
+  before_action :require_login, only: [:edit, :update, :create, :destroy]
 
   # GET /listings
   # GET /listings.json
   def index
-    @listings = Listing.all
     @listings = Listing.order(:id).page params[:page]
+    @users = current_user
   end
 
   # GET /listings/1
   # GET /listings/1.json
   def show
     @listing = Listing.find(params[:id])
+    @reservation = Reservation.new
+    @user = current_user
+
   end
 
   # GET /listings/new
   def new
     @listing = Listing.new
+    @users = current_user
   end
 
   # GET /listings/1/edit
@@ -42,24 +47,32 @@ class ListingsController < ApplicationController
   # PATCH/PUT /listings/1
   # PATCH/PUT /listings/1.json
   def update
-    respond_to do |format|
-      if @listing.update(listing_params)
-        format.html { redirect_to @listing, notice: 'Listing was successfully updated.' }
-        format.json { render :show, status: :ok, location: @listing }
-      else
-        format.html { render :edit }
-        format.json { render json: @listing.errors, status: :unprocessable_entity }
+    if current_user.id == @listing.user.id
+      respond_to do |format|
+        if @listing.update(listing_params)
+          format.html { redirect_to @listing, notice: 'Listing was successfully updated.' }
+          format.json { render :show, status: :ok, location: @listing }
+        else
+          format.html { render :edit }
+          format.json { render json: @listing.errors, status: :unprocessable_entity }
+        end
       end
+    else
+      redirect_to root_path
     end
   end
 
   # DELETE /listings/1
   # DELETE /listings/1.json
   def destroy
-    @listing.destroy
-    respond_to do |format|
-      format.html { redirect_to listings_url, notice: 'Listing was successfully destroyed.' }
-      format.json { head :no_content }
+    if current_user.id == @listing.user.id
+      @listing.destroy
+      respond_to do |format|
+        format.html { redirect_to listings_url, notice: 'Listing was successfully destroyed.' }
+        format.json { head :no_content }
+      end
+    else
+      redirect_to root_path
     end
   end
 

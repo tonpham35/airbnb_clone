@@ -1,4 +1,7 @@
-<h1>Editing Listing</h1>
+<% x = Listing.find(params[:id]) %>
+<% if current_user == x.user %>
+
+<h1 style="padding-top: 120px;">Editing Listing</h1>
 
 
 <%= render 'form', listing: @listing %>
@@ -6,3 +9,7 @@
 
 <%= link_to 'Show', @listing %> |
 <%= link_to 'Back', listings_path %>
+
+<% else %>
+redirect_to root_path
+<% end %>

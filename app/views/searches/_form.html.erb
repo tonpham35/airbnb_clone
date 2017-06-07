@@ -1,0 +1,78 @@
+
+<%= form_with(model: search, local: true) do |form| %>
+  <% if search.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(search.errors.count, "error") %> prohibited this search from being saved:</h2>
+
+      <ul>
+      <% search.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :keyword %>
+    <%= form.text_field :keyword, id: :search_keyword %>
+  </div>
+
+  <div class="field">
+    <%= form.label :property_type %>
+    <%= form.select :property_type, options_for_select(@property_types), :include_blank => true %>
+  </div>
+
+  <div class="field">
+    <%= form.label :state %>
+    <%= form.select :state, options_for_select(@states), :include_blank => true %>
+  </div>
+
+  <div class="field">
+    <%= form.label :country %>
+    <%= form.select :country, options_for_select(@countries), :include_blank => true %>
+  </div>
+
+  <div class="field">
+    <%= form.label :no_bed %>
+    <%= form.number_field :no_bed, id: :search_no_bed %>
+  </div>
+
+  <div class="field">
+    <%= form.label :no_room %>
+    <%= form.number_field :no_room, id: :search_no_room %>
+  </div>
+
+  <div class="field">
+    <%= form.label :no_guest %>
+    <%= form.number_field :no_guest, id: :search_no_guest %>
+  </div>
+
+  <div class="field">
+    <%= form.label :min_price %>
+    <%= form.number_field :min_price, id: :search_min_price %>
+  </div>
+
+  <div class="field">
+    <%= form.label :max_price %>
+    <%= form.number_field :max_price, id: :search_max_price %>
+  </div>
+
+  <div class="field">
+    <%= form.label :smoker %>
+    <%= form.check_box :smoker, id: :search_smoker %>
+  </div>
+
+  <div class="field">
+    <%= form.label :pets %>
+    <%= form.check_box :pets, id: :search_pets %>
+  </div>
+
+  <div class="field">
+    <%= form.label :instant_book %>
+    <%= form.check_box :instant_book, id: :search_instant_book %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

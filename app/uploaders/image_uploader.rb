@@ -3,16 +3,20 @@ class ImageUploader < CarrierWave::Uploader::Base
   # Include RMagick or MiniMagick support:
   # include CarrierWave::RMagick
   include CarrierWave::MiniMagick
+  # include CarrierWaveDirect::Uploader
 
   # Choose what kind of storage to use for this uploader:
   storage :file
-  # storage :fog
+  #storage :fog
+
+  # include CarrierWave:MimeTypes
+  # process :set_content_type
 
   # Override the directory where uploaded files will be stored.
   # This is a sensible default for uploaders that are meant to be mounted:
-  def store_dir
-    "uploads/#{model.class.to_s.underscore}/#{mounted_as}/#{model.id}"
-  end
+  # def store_dir
+  #   "uploads/#{model.class.to_s.underscore}/#{mounted_as}/#{model.id}"
+  # end
 
   # Provide a default URL as a default if there hasn't been a file uploaded:
   # def default_url(*args)
@@ -29,14 +33,28 @@ class ImageUploader < CarrierWave::Uploader::Base
   #   # do something
   # end
 
+  def fix_exif_rotation #this is my attempted solution
+    manipulate! do |img|
+      img.tap(&:auto_orient)
+    end
+  end
+
+
   # Create different versions of your uploaded files:
   version :thumb do
+    process :fix_exif_rotation
     process resize_to_limit: [100, 100]
   end
 
-  version :profile do
-    process resize_to_limit: [200, 200]
+  version :card do
+    process :fix_exif_rotation
+    process resize_to_limit: [nil, 300]
   end
+
+  version :carousel do
+    process :fix_exif_rotation
+    process resize_to_limit: [nil, 500]
+  end  
 
   # Add a white list of extensions which are allowed to be uploaded.
   # For images you might use something like this:
