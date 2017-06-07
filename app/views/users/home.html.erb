@@ -38,7 +38,7 @@
               <% if listing.photos.length > 0 %>
                 <%= image_tag listing.photos.first.card.url, class:'img-responsive center-block', id:'card-pic-small' %>
               <% else %>
-                <img width="1184" height="666" class="img-responsive center-block" src="https://propeller.in/assets/images/profile-pic.png">
+                <img width="1184" height="666" class="img-responsive center-block" src="http://propeller.in/assets/images/profile-pic.png">
               <% end %>
             </div>
             
@@ -118,7 +118,7 @@
       <% elsif listing.photos.count == 1 %>
         <%= image_tag listing.photos[0].carousel.url %> 
       <% else %>
-        <img width="1184" height="666" class="img-responsive" src="https://propeller.in/assets/images/profile-pic.png"> 
+        <img width="1184" height="666" class="img-responsive" src="http://propeller.in/assets/images/profile-pic.png"> 
       <% end %>
 
       </div>
