@@ -14,45 +14,37 @@
     <title>Propeller Basic HTML Template</title>
 
     <!-- Bootstrap css-->
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
-   
+	<!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css"> -->
    	<!--Google Icon Font-->
-    <link href="httpS://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-    
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <!-- Propeller css -->
-    <link href="css/propeller.min.css" rel="stylesheet">
-
-
-
-
-	<!-- Sidebar js -->
-	<!-- <script type="text/javascript" language="javascript" src="http://propeller.in/components/sidebar/js/sidebar.js"></script> -->
-	<!-- Propeller Dropdown js -->
-	<!-- <script type="text/javascript" language="javascript" src="http://propeller.in/components/dropdown/js/dropdown.js"></script> -->
-	<!-- Propeller ripple effect js -->
-	<!-- <script type="text/javascript" language="javascript" src="http://propeller.in/components/button/js/ripple-effect.js"></script> -->
+    <!-- <link href="css/propeller.min.css" rel="stylesheet"> -->
+    <!-- Jquery js -->
+	<!-- <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script> -->
+	<!-- Bootstrap js -->
+	<!-- <script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script> -->
+    <!-- <link href="js/propeller.min.css" rel="stylesheet"> -->
  
   	<!-- Propeller modal js -->
-	<!-- <script type="text/javascript" src="http://propeller.in/components/modal/js/modal.js"></script> -->
+	<script type="text/javascript" src="//propeller.in/components/modal/js/modal.js"></script>
 	<!-- Propeller checkbox js -->
-	<!-- <script type="text/javascript" src="http://propeller.in/components/checkbox/js/checkbox.js"></script> -->
+	<script type="text/javascript" src="//propeller.in/components/checkbox/js/checkbox.js"></script>
 	<!-- Propeller radio js -->
-	<!-- <script type="text/javascript" src="http://propeller.in/components/radio/js/radio.js"></script> -->
+	<script type="text/javascript" src="//propeller.in/components/radio/js/radio.js"></script>
 	<!-- Propeller textfield js -->
-	<!-- <script type="text/javascript" src="http://propeller.in/components/textfield/js/textfield.js"></script> -->
-	<!-- <link href="http://fonts.googleapis.com/css?family=Roboto" rel="stylesheet"> -->
-	<!-- Jquery js -->
+	<script type="text/javascript" src="//propeller.in/components/textfield/js/textfield.js"></script>
+	<link href="http://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
 	<!-- Propeller tabs js -->
-	<!-- <script type="text/javascript" language="javascript" src="http://propeller.in/components/tab/js/tab-scrollable.js"></script> -->
+	<script type="text/javascript" language="javascript" src="//propeller.in/components/tab/js/tab-scrollable.js"></script>
 	<!-- Propeller Dropdown hover js -->
-	<!-- <script src="http://propeller.in/components/dropdown/js/bootstrap-hover-dropdown.js"></script> -->
+	<script src="//propeller.in/components/dropdown/js/bootstrap-hover-dropdown.js"></script>
 	<!-- Slider js -->
-	<!-- <script src="http://propeller.in/components/range-slider/js/wNumb.js"></script> -->
-	<!-- <script src="http://propeller.in/components/range-slider/js/nouislider.js"></script> -->
+	<script src="//propeller.in/components/range-slider/js/wNumb.js"></script>
+	<script src="//propeller.in/components/range-slider/js/nouislider.js"></script>
 	<!-- Select2 js-->
-	<!-- <script type="text/javascript" src="http://propeller.in/components/select2/js/select2.full.js"></script> -->
+	<script type="text/javascript" src="//propeller.in/components/select2/js/select2.full.js"></script>
 	<!-- Propeller Select2 -->
-	<!-- <script type="text/javascript" src="http://propeller.in/components/select2/js/pmd-select2.js"></script> --> --> -->
+	<script type="text/javascript" src="//propeller.in/components/select2/js/pmd-select2.js"></script>
 
 </head>
 <body style="background-color: lightgrey;">
@@ -108,7 +100,7 @@
 							<div class="form-group pmd-textfield pmd-textfield-floating-label">       
 								<label>Property Type</label>
 								<select class="select-simple form-control pmd-select2" style="width: 100%" name=search[property_type]>
-							        <option></option>
+							   		<option></option>
 							        <% Listing.distinct.pluck(:property_type).each do |value| %>
 							        	<option><%= value %></option>
 							        <% end %>
@@ -119,7 +111,7 @@
 							<div class="form-group pmd-textfield pmd-textfield-floating-label">       
 								<label>State</label>
 								<select class="select-simple form-control pmd-select2" style="width: 100%" name=search[state]>
-							        <option></option>
+							      <option></option>
 							        <% Listing.distinct.pluck(:state).each do |value| %>
 							        	<option><%= value %></option>
 							        <% end %>
@@ -183,28 +175,33 @@
 	    						</label>
 							</div>
 						</div>
-						<div class='col-md-2 col-sm-4'>
-					        <%= form.label :start_date %>
-					        <div class="form-group">
-					            <div class='input-group date' id='datetimepicker1'>
-					            	<%= form.text_field :start_date, class: 'form-control' %>
-					                <span class="input-group-addon">
-					                	<span class="glyphicon glyphicon-calendar"></span>
-					                </span>
-					            </div>
-					        </div>
-					    </div>
-					    <div class='col-md-2 col-sm-4'>
-					        <%= form.label :end_date %>
-				        	<div class="form-group">
-				        		<div class='input-group date' id='datetimepicker'>
-				            		<%= form.text_field :end_date, class: 'form-control' %>
-				            		<span class="input-group-addon">
-				                		<span class="glyphicon glyphicon-calendar"></span>
-				            		</span>
-				            	</div>
-				        	</div>
-					    </div>
+						<div class="col-md-5 col-sm-5">
+							<div class="row">
+								<div class='col-md-4 col-sm-4'>
+							        <%= form.label :start_date %>
+							        <div class="form-group">
+							            <div class='input-group date' id='datetimepicker6'>
+							            	<%= form.text_field :start_date, class: 'form-control' %>
+							                <span class="input-group-addon">
+							                	<span class="glyphicon glyphicon-calendar"></span>
+							                </span>
+							            </div>
+							        </div>
+							    </div>
+								<div class='col-md-4 col-sm-4'>
+							        <%= form.label :end_date %>
+							        <div class="form-group">
+							            <div class='input-group date' id='datetimepicker7'>
+							            	<%= form.text_field :end_date, class: 'form-control' %>
+							                <span class="input-group-addon">
+							                	<span class="glyphicon glyphicon-calendar"></span>
+							                </span>
+							            </div>
+							        </div>
+							    </div>
+							</div>
+						</div>
+
 						<div class="col-md-1 col-sm-1">
 							<%= form.submit do %><button class="btn btn-lg pmd-btn-raised pmd-ripple-effect btn-primary" type="button" style="background-color: #0069C0; position: absolute; top: 20px;">Submit</button><% end %>
 						</div>
@@ -217,6 +214,23 @@
 <%= yield %>
 
     <div class="pmd-sidebar-overlay"></div>
-</section>
+
+
+<script type="text/javascript">
+    $(function() {              
+        $('#datetimepicker6').datetimepicker({
+        	format: 'DD/MM/YYYY'
+        });
+    });
+    $(function() {              
+        $('#datetimepicker7').datetimepicker({
+        	format: 'DD/MM/YYYY'
+        });
+    }); 
+        // start date picke on chagne event [select minimun date for end date datepicker]
+    $("#datetimepicker6").on("dp.change", function (e) {
+        $('#datetimepicker7').data("DateTimePicker").minDate(e.date);
+    });
+</script>
 </body>
 </html>

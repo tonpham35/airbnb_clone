@@ -18,14 +18,13 @@ class Clearance::UsersController < Clearance::BaseController
     @user = user_from_params
       if @user.save
         sign_in @user
-        redirect_back_or url_after_create
+        redirect_to root_path
       else
-        puts 'hello'
         respond_to do |format|
           # format.html {redirect_to user_new}
           format.js
         end
-        # render template: "users/new"
+        render template: "users/new"
       end
   end
 

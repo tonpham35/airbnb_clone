@@ -146,24 +146,22 @@
     <%= form.hidden_field :user_id, value: @user.id %>
     <%= form.hidden_field :listing_id, value: @listing.id %>
   </div>
-
     <div class="row">
-      <div class='col-sm-3'>
+      <div class='col-md-4 col-sm-4'>
         <%= form.label :start_date %>
-          <div class="form-group">
-            <div class='input-group date' id='datetimepicker1'>
-              <%= form.text_field :start_date, class: 'form-control' %>
-                <span class="input-group-addon">
-                  <span class="glyphicon glyphicon-calendar"></span>
-                </span>
-            </div>
+        <div class="form-group">
+          <div class='input-group date' id='datetimepicker8'>
+            <%= form.text_field :start_date, class: 'form-control' %>
+              <span class="input-group-addon">
+                <span class="glyphicon glyphicon-calendar"></span>
+              </span>
           </div>
+        </div>
       </div>
-
-      <div class='col-sm-3'>
+      <div class='col-md-4 col-sm-4'>
         <%= form.label :end_date %>
           <div class="form-group">
-            <div class='input-group date' id='datetimepicker'>
+            <div class='input-group date' id='datetimepicker9'>
               <%= form.text_field :end_date, class: 'form-control' %>
                 <span class="input-group-addon">
                   <span class="glyphicon glyphicon-calendar"></span>
@@ -172,6 +170,7 @@
           </div>
       </div>
     </div>
+  </div>
 
   <div class="field">
     <%= form.label :Number_of_Guest %>
@@ -195,3 +194,20 @@
 <% end %>
 
 <%= link_to 'Back', listings_path %>
+
+<script type="text/javascript">
+    $(function() {              
+        $('#datetimepicker8').datetimepicker({
+          format: 'DD/MM/YYYY'
+        });
+    });
+    $(function() {              
+        $('#datetimepicker9').datetimepicker({
+          format: 'DD/MM/YYYY'
+        });
+    }); 
+        // start date picke on chagne event [select minimun date for end date datepicker]
+    $("#datetimepicker8").on("dp.change", function (e) {
+        $('#datetimepicker9').data("DateTimePicker").minDate(e.date);
+    });
+</script>

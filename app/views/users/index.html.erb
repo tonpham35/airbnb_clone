@@ -8,7 +8,9 @@
       <% end %>
     </div>
     <span>Full Name: <%= @users.first_name %> <%= @users.last_name %></span><br>
-    <span>Email Address: <%= @users.email %></span>
+    <span>Email Address: <%= @users.email %></span><br>
+    <span><%= link_to 'Edit User', edit_user_path(current_user.id) %></span><br>
+    <span><%= link_to 'Create a New Listing', new_listing_path %></span><br>
   </div>
 
     <!--Default tab example -->
@@ -225,6 +227,7 @@
                             <div class="media-body">
                                 <h1 class="pmd-card-title-text"><%= reservation.listing.name %></h1>
                                 <span class="pmd-card-subtitle-text" style="font-size: 20px;">Host: <%= reservation.listing.user.first_name %> <%= reservation.listing.user.last_name %></span><br>
+                                <span class="pmd-card-subtitle-text">Address: <%= reservation.listing.address1 %>, <%= reservation.listing.state %>, <%= reservation.listing.country %></span><br>
                                 <span class="pmd-card-subtitle-text">Check-in: <%= reservation.start_date %> - Check-out: <%= reservation.end_date %></span><br>
                                 <span class="pmd-card-subtitle-text">Total Price: <%= reservation.total_price %><%= reservation.currency %></span><br>
                                 <span class="pmd-card-subtitle-text">Message: <%= reservation.message %></span>
@@ -233,10 +236,10 @@
                             <!-- Card media image -->
                             <div class="media-right media-middle">
                                 <a>
-                                  <% if reservation.listing.photos != nil %>
-                                    <%= image_tag reservation.listing.photos[0].card.url class:"img-responsive center-block"%>
+                                  <% if reservation.listing.photos.count == 0 %>
+                                    <img width="1184" height="666" class="img-responsive center-block" src="/assets/profile-pic.png">
                                   <% else %>
-                                    <img width="1184" height="666" class="img-responsive center-block" src="http://propeller.in/assets/images/profile-pic.png">
+                                    <%= image_tag reservation.listing.photos[0].card.url class:"img-responsive center-block"%>
                                   <% end %>
                                 </a>
                             </div>
@@ -244,8 +247,8 @@
                         
                         <!-- Card action -->
                         <div class="pmd-card-actions">
-                            <button class="btn pmd-btn-flat pmd-ripple-effect btn-primary" type="button">Primary</button>
-                            <button type="button" class="btn pmd-btn-flat pmd-ripple-effect btn-default">Action</button>
+                            <%= link_to listing_path(reservation.listing.id) do %><button class="btn pmd-btn-flat pmd-ripple-effect btn-primary" type="button">View Listing</button><% end %>
+                            <%= link_to reservation_path(reservation.id) do %><button type="button" class="btn pmd-btn-flat pmd-ripple-effect btn-default">View Reservation</button><% end %>
                         </div>
                     </div>
                   </div>

@@ -44,7 +44,9 @@
                     </div>
                     <div class="media-body media-middle">
                       <% if signed_in? -%>
-                        My Account: <%= current_user.first_name.capitalize %> <%= current_user.last_name.capitalize %>
+                          <% if current_user.first_name != nil -%>
+                            My Account: <%= current_user.first_name.capitalize %> <%= current_user.last_name.capitalize %>
+                          <% end -%>
                         <% else -%> 
                           Guest
                         <% end -%>
