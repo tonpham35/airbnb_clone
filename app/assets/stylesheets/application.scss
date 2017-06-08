@@ -17,50 +17,73 @@
 @import "bootstrap-sprockets";
 @import "bootstrap";
 @import 'bootstrap-datetimepicker';
+@import 'typography.css';
+@import 'button.css';
+@import 'google-icons.css';
+@import 'textfield.css';
+@import 'card.css';
+@import 'bootstrap-datetimepicker.css';
+@import 'pmd-datetimepicker.css';
+@import 'navbar.css';
+@import 'dropdown.css';
+@import 'list.css';
+@import 'modal.css';
+@import 'radio.css';
+@import 'checkbox.css';
+@import 'sidebar.css';
+@import 'textfield.css';
+@import 'tab.css';
+@import 'nouislider.min.css';
+@import 'range-slider.css';
+@import 'select2.min.css';
+@import 'select2-bootstrap.css';
+@import 'pmd-select2.css';
+@import "//fonts.googleapis.com/icon?family=Material+Icons";
+
 /* Bootstrap css */
-@import "//maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css";
+/*@import "//maxcdn.bootstrapcdn.com/border-image-outset: tstrap/3.3.6/css/bootstrap.min.css";*/
 /* Propeller typography */
-@import "//propeller.in/components/typography/css/typography.css";
+/*@import "//propeller.in/components/typography/css/typography.css";*/
 /* Propeller buttons */
-@import "//propeller.in/components/button/css/button.css";
+/*@import "//propeller.in/components/button/css/button.css";*/
 /* Propeller icons */
 @import "//fonts.googleapis.com/icon?family=Material+Icons";
-@import "//propeller.in/components/icons/css/google-icons.css";
+/*@import "//propeller.in/components/icons/css/google-icons.css";*/
 /* Propeller input */
-@import "//propeller.in/components/textfield/css/textfield.css";
+/*@import "//propeller.in/components/textfield/css/textfield.css";*/
 /* Propeller card css */
-@import "//propeller.in/components/card/css/card.css";
+/*@import "//propeller.in/components/card/css/card.css";*/
 /* Bootstrap datetimepicker */
-@import "//propeller.in/components/datetimepicker/css/bootstrap-datetimepicker.css";
+/*@import "//propeller.in/components/datetimepicker/css/bootstrap-datetimepicker.css";*/
 /* Propeller datetimepicker */
-@import "//propeller.in/components/datetimepicker/css/pmd-datetimepicker.css";
+/*@import "//propeller.in/components/datetimepicker/css/pmd-datetimepicker.css";*/
 /* Propeller navbar */
-@import "//propeller.in/components/navbar/css/navbar.css";
+/*@import "//propeller.in/components/navbar/css/navbar.css";*/
 /* Propeller dropdowns */
-@import "//propeller.in/components/dropdown/css/dropdown.css";
+/*@import "//propeller.in/components/dropdown/css/dropdown.css";*/
 /* Propeller list */
-@import "//propeller.in/components/list/css/list.css";
+/*@import "//propeller.in/components/list/css/list.css";*/
 /* Propeller modal */
-@import "//propeller.in/components/modal/css/modal.css";
-/* Propeller radio */
-@import "//propeller.in/components/radio/css/radio.css";
+/*@import "//propeller.in/components/modal/css/modal.css";*/
+ /*Propeller radio */
+/*@import "//propeller.in/components/radio/css/radio.css";*/
 /* Propeller textfield */
-@import "//propeller.in/components/textfield/css/textfield.css";
+/*@import "//propeller.in/components/textfield/css/textfield.css";*/
 /* Propeller checkbox */
-@import "//propeller.in/components/checkbox/css/checkbox.css";
+/*@import "//propeller.in/components/checkbox/css/checkbox.css";*/
 /* Propeller sidebar */
-@import "//propeller.in/components/sidebar/css/sidebar.css";
+/*@import "//propeller.in/components/sidebar/css/sidebar.css";*/
 /* Propeller tab */
-@import "//propeller.in/components/tab/css/tab.css";
+/*@import "//propeller.in/components/tab/css/tab.css";*/
 /* Range Slider css */
-@import "//propeller.in/components/range-slider/css/nouislider.min.css";
+/*@import "//propeller.in/components/range-slider/css/nouislider.min.css";*/
 /*Propeller Range Slider css*/
-@import "//propeller.in/components/range-slider/css/range-slider.css";
+/*@import "//propeller.in/components/range-slider/css/range-slider.css";*/
 /* Select2 css */
-@import "//propeller.in/components/select2/css/select2.min.css";
-@import "//propeller.in/components/select2/css/select2-bootstrap.css";
+/*@import "//propeller.in/components/select2/css/select2.min.css";*/
+/*@import "//propeller.in/components/select2/css/select2-bootstrap.css";*/
 /* Propeller select2 */
-@import "//propeller.in/components/select2/css/pmd-select2.css";
+/*@import "//propeller.in/components/select2/css/pmd-select2.css";*/
 
 /*----- Menu -----*/
 
